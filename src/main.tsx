@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import GlobalStyle from "@styles/global.style";
-import { BrowserRouter, RouterProvider } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { CookiesProvider } from "react-cookie";
 import { RecoilRoot } from "recoil";
