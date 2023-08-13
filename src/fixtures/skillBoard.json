@@ -1,0 +1,42 @@
+{
+  "post": [
+    {
+      "id": 1,
+      "name": "권하진",
+      "summary": "He created a pig burger out of beef.",
+      "titleImg": "https://cdn.imweb.me/thumbnail/20220109/21d7619ae309e.jpg",
+      "date": "2023.03.21"
+    },
+    {
+      "id": 2,
+      "name": "김규하",
+      "summary": "Good luck is another name for tenacity of purpose.",
+      "date": "2023.01.01"
+    },{
+      "id": 3,
+      "name": "권하진",
+      "summary": "He created a pig burger out of beef.",
+      "titleImg": "https://cdn.imweb.me/thumbnail/20220109/21d7619ae309e.jpg",
+      "date": "2023.03.21"
+    },
+    {
+      "id": 4,
+      "name": "김규하",
+      "summary": "Good luck is another name for tenacity of purpose.",
+      "date": "2023.01.01"
+    },{
+      "id": 5,
+      "name": "권하진",
+      "summary": "He created a pig burger out of beef.",
+      "titleImg": "https://cdn.imweb.me/thumbnail/20220109/21d7619ae309e.jpg",
+      "date": "2023.03.21"
+    },
+    {
+      "id": 6,
+      "name": "김규하",
+      "summary": "Good luck is another name for tenacity of purpose.",
+      "titleImg": "http://www.btmk.org/uploads/editer/images/%EC%A0%9C%EC%9E%90%20%ED%9B%88%EB%A0%A8%EC%9D%98%20%EC%A7%84%EC%88%98%EB%8A%94%20%EC%9D%B4%EA%B2%83!.jpg",
+      "date": "2023.01.01"
+    }
+  ]
+}

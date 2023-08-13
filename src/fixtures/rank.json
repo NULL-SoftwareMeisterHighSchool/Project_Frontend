@@ -1,0 +1,84 @@
+{
+	"list": [
+		{
+			"id": 1,
+			"place": 1,
+			"name": "홍길동",
+			"studentNumber": 12324,
+			"major": "Frontend",
+			"school": "대덕",
+			"classNumber": 8,
+			"score": 425312
+		},
+		{
+			"id": 2,
+			"place": 2,
+			"name": "김민수",
+			"studentNumber": 4321,
+			"major": "iOS",
+			"school": "광주",
+			"classNumber": 7,
+			"score": 92008
+		},
+		{
+			"id": 3,
+			"place": 3,
+			"name": "김민수",
+			"studentNumber": 1234,
+			"major": "Backend",
+			"school": "부산",
+			"classNumber": 7,
+			"score": 87263
+		},
+		{
+			"id": 4,
+			"place": 4,
+			"name": "김민수",
+			"studentNumber": 4321,
+			"major": "Security",
+			"school": "대구",
+			"classNumber": 7,
+			"score": 82091
+		},
+		{
+			"id": 5,
+			"place": 5,
+			"name": "김민수",
+			"studentNumber": 1234,
+			"major": "Frontend",
+			"school": "대덕",
+			"classNumber": 7,
+			"score": 79291
+		},
+		{
+			"id": 6,
+			"place": 6,
+			"name": "김민수",
+			"studentNumber": 4321,
+			"major": "Android",
+			"school": "부산",
+			"classNumber": 7,
+			"score": 78973
+		},
+		{
+			"id": 7,
+			"place": 7,
+			"name": "김민수",
+			"studentNumber": 1234,
+			"major": "AI",
+			"school": "광주",
+			"classNumber": 7,
+			"score": 72439
+		},
+		{
+			"id": 8,
+			"place": 8,
+			"name": "김민수",
+			"studentNumber": 4321,
+			"major": "Frontend",
+			"school": "대구",
+			"classNumber": 7,
+			"score": 68031
+		}
+	]
+}
