@@ -1,7 +1,7 @@
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/i18n/ko-kr";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { instance } from "@apis/index";
 
 type Props = {
@@ -18,6 +18,7 @@ export type HookMap = {
 const BASE_URL = `${import.meta.env.VITE_ARTICLE}`;
 
 const Toast = ({ content, setContent2 }: Props) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const editorRef = useRef<any>(null); //error해결을 위해 any 사용
     const onChange = () => {
         /** error : 'editorRef.current'은(는) 'null'일 수 있습니다. 발생 - 일단 해결*/
@@ -57,6 +58,7 @@ const Toast = ({ content, setContent2 }: Props) => {
                             }
                         );
                         callback(res.data.url, `image`);
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     } catch (err: any) {
                         console.error(err);
                         callback(`이미지 업로드 실패, ${err.message}`);
