@@ -26,7 +26,7 @@ export const Sidebar = () => {
     const [isOpen, setIsOpen] = useState (false) ;
     const [category, setCategory] = useState("메인");
     const [showPopUp, setShowPopUp] = useState<boolean>(false);
-    const outside = useRef<HTMLElement>();
+    const outside = useRef<HTMLElement>(null);
     const onSelect = useCallback(
         (category: SetStateAction<string>) => setCategory(category),
         []
