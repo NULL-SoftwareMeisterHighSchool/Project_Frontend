@@ -28,7 +28,7 @@ const Mypage = () => {
         name: "",
         email: "",
         bio: "",
-        githubURL: "",
+        githubID: "",
         portfolioURL: "",
         stacks: [],
         articles: {
@@ -87,7 +87,7 @@ const Mypage = () => {
                 setVal={setUpdateProfileOpen}
                 userData={{
                     bio: userData.bio,
-                    githubURL: userData.githubURL,
+                    githubID: userData.githubID,
                     portfolioURL: userData.portfolioURL,
                     stacks: userData.stacks,
                 }}
@@ -119,7 +119,7 @@ const Mypage = () => {
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Github</S.UserContectTitle>
                                 <S.UserContect>
-                                    {userData.githubURL}
+                                    {userData.githubID}
                                 </S.UserContect>
                             </S.UserContectInfo>
                         </S.UserContectSection>

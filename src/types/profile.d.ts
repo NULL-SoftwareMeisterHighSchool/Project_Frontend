@@ -4,7 +4,7 @@ export type USERDATATYPE = {
     name: string;
     email: string;
     bio: string;
-    githubURL: string;
+    githubID: string;
     portfolioURL: string;
     stacks: string[];
     articles: {

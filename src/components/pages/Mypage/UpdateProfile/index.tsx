@@ -16,7 +16,7 @@ interface UpdateProfileProps {
 }
 interface UseDateType {
     bio: string;
-    githubURL: string;
+    githubID: string;
     portfolioURL: string;
     stacks: string[];
 }
@@ -29,7 +29,7 @@ const UpdateProfile = ({
     const [inputSkill, setInutSkill] = useState<string>("");
     const [userDataUpdate, setUserDataUpdate] = useState<UseDateType>({
         bio: "",
-        githubURL: "",
+        githubID: "",
         portfolioURL: "",
         stacks: [],
     });
@@ -68,7 +68,7 @@ const UpdateProfile = ({
         const arr1 = userData.stacks;
         const arr2 = userDataUpdate.stacks;
         if (
-            userDataUpdate.githubURL === userData.githubURL &&
+            userDataUpdate.githubID === userData.githubID &&
             userDataUpdate.bio === userData.bio &&
             userDataUpdate.portfolioURL === userData.portfolioURL &&
             arr1.length === arr2.length &&
@@ -78,7 +78,7 @@ const UpdateProfile = ({
         } else {
             setBtnState(true);
         }
-    },[userData.bio, userData.githubURL, userData.portfolioURL, userData.stacks, userDataUpdate.bio, userDataUpdate.githubURL, userDataUpdate.portfolioURL, userDataUpdate.stacks]);
+    },[userData.bio, userData.githubID, userData.portfolioURL, userData.stacks, userDataUpdate.bio, userDataUpdate.githubID, userDataUpdate.portfolioURL, userDataUpdate.stacks]);
 
     useEffect(() => {
         changeBtnState();
@@ -116,7 +116,7 @@ const UpdateProfile = ({
                         name="githubURL"
                         placeholder="Github 아이디를 입력해주세요"
                         onChange={onChange}
-                        value={userDataUpdate.githubURL}
+                        value={userDataUpdate.githubID}
                     />
                     <Input
                         width="100%"
