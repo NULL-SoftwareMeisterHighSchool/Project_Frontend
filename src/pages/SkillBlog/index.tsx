@@ -5,7 +5,7 @@ import { SkillBlogDefaultImg } from "@assets/images/allfiles";
 import TitlePath from "@components/common/TitlePath";
 import React, { useEffect, useState } from "react";
 import { getBlog } from "@apis/article";
-import useDate from "@hooks/useDate";
+import UseDate from "@hooks/useDate";
 import { useInView } from "react-intersection-observer";
 import { BodyLarge2 } from "@styles/text.style";
 import { BLOGTYPE } from "../../types/blog";
@@ -108,7 +108,7 @@ const SkillBlog = () => {
                                     ? SkillBlogDefaultImg
                                     : data.thumbnail
                             }
-                            date={useDate(data.createdAt).date+" "+useDate(data.createdAt).time}
+                            date={UseDate(data.createdAt).date+" "+UseDate(data.createdAt).time}
                             likes={data.likes}
                             views={data.views}
                         />
