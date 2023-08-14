@@ -17,11 +17,11 @@ type blogDataProps = {
 };
 
 const Board = () => {
-    const getBlogData = (limit: number) => {
+    const getBlogData = () => {
         getBlog({
             type: "GENERAL",
-            offset: (page - 1) * (limit + 1),
-            limit: limit,
+            offset: (page - 1) * (8 + 1),
+            limit: 8,
             order:
                 filterData === "최신순"
                     ? "TIME"
@@ -53,11 +53,11 @@ const Board = () => {
     /** 필터 변경시 데이터 받아오기 */
     useEffect(()=>{
             setPage(1);
-            getBlogData(8);
+            getBlogData();
     },[filterData]);
 
     useEffect(()=>{
-        getBlogData(8);
+        getBlogData();
     },[page]);
 
     return (
@@ -68,7 +68,7 @@ const Board = () => {
                     onKeyDown={(e: React.KeyboardEvent) => {
                         if (e.keyCode === 13) {
                             setPage(1);
-                            getBlogData(0);
+                            getBlogData();
                         }
                     }}
                     searchVal={searchInput}

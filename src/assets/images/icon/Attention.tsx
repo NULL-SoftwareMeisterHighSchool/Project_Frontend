@@ -6,8 +6,8 @@ export const Attention: React.FC<React.SVGProps<SVGSVGElement>> = props => {
       height="16"
       viewBox="0 0 16 16"
       fill="current"
-      fill-rule="evenodd"
-      clip-rule="evenodd" 
+      fillRule="evenodd"
+      clipRule="evenodd" 
       {...props}
     >
       <rect x="0.5" y="0.5" width="15" height="15" rx="7.5" fill="#3349D8" stroke="#3349D8" />
