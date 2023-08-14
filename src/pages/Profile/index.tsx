@@ -10,14 +10,13 @@ import { useQuery } from "react-query";
 import { delCookie } from "@utils/cookies";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { profileIdAtom, profileNameAtom } from "@atoms/profile";
-import useDate from "@hooks/useDate";
 import { getUser } from "@apis/users";
 import UserIcon from "@components/common/UserIcon";
 import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
 import { useNavigate, useParams } from "react-router-dom";
 import { USERDATATYPE } from "../../types/profile";
 import { alertSuccess } from "@utils/toastify";
-
+import UseDate from "@hooks/useDate";
 
 const Mypage = () => {
     const navigate = useNavigate();
@@ -29,7 +28,7 @@ const Mypage = () => {
         name: "",
         email: "",
         bio: "",
-        githubID: "",
+        githubURL: "",
         portfolioURL: "",
         stacks: [],
         articles: {
@@ -46,10 +45,10 @@ const Mypage = () => {
                         onClick={() => {
                             delCookie("refreshToken", { path: "/" });
                             delCookie("accessToken", { path: "/" });
-                            setMyId("")
-                            setMyName("")
+                            setMyId("");
+                            setMyName("");
                             alertSuccess("로그아웃");
-                            navigate('/');
+                            navigate("/");
                         }}
                     >
                         <BodyStrong>로그아웃</BodyStrong>
@@ -62,8 +61,7 @@ const Mypage = () => {
         }
     };
 
-    const { articles, name, email, ...changeUserData } = userData;
-    const { refetch } = useQuery("getUser", ()=>getUser(id), {
+    const { refetch } = useQuery("getUser", () => getUser(id), {
         onSuccess: (res) => {
             setUserData(res.data);
         },
@@ -72,18 +70,27 @@ const Mypage = () => {
         },
         enabled: false,
     });
+    
     useEffect(() => {
         refetch();
-    }, []);
+    }, [refetch]);
 
     return (
         <>
-            <TitlePath title={`${String(myId) === id ? "마이":userData.name} 페이지`} path="Menu > 프로필" />
+            <TitlePath
+                title={`${String(myId) === id ? "마이" : userData.name} 페이지`}
+                path="Menu > 프로필"
+            />
             <UpdateProfile
                 refetch={refetch}
                 val={updateProfileOpen}
                 setVal={setUpdateProfileOpen}
-                userData={changeUserData}
+                userData={{
+                    bio: userData.bio,
+                    githubURL: userData.githubURL,
+                    portfolioURL: userData.portfolioURL,
+                    stacks: userData.stacks,
+                }}
             />
             <S.MypageContainer>
                 <S.User>
@@ -112,7 +119,7 @@ const Mypage = () => {
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Github</S.UserContectTitle>
                                 <S.UserContect>
-                                    {userData.githubID}
+                                    {userData.githubURL}
                                 </S.UserContect>
                             </S.UserContectInfo>
                         </S.UserContectSection>
@@ -138,7 +145,7 @@ const Mypage = () => {
                                         ? SkillBlogDefaultImg
                                         : ""
                                 }
-                                date={useDate(data.createdAt).date}
+                                date={UseDate(data.createdAt).date}
                                 to={"/blogdetail/" + data.id}
                                 likes={data.likes}
                                 views={data.views}
@@ -154,7 +161,7 @@ const Mypage = () => {
                                 id={post.id}
                                 title={post.title}
                                 name={post.author.name}
-                                date={useDate(post.createdAt).date}
+                                date={UseDate(post.createdAt).date}
                                 to={"/blogdetail/" + post.id}
                             />
                         ))}
