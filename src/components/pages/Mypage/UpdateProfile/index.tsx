@@ -107,13 +107,14 @@ const UpdateProfile = ({
                         title="한줄소개"
                         name="bio"
                         placeholder="한줄소개를 입력해주세요"
+                        maxLength={50}
                         onChange={onChange}
                         value={userDataUpdate.bio}
                     />
                     <Input
                         width="100%"
                         title="Github 아이디"
-                        name="githubURL"
+                        name="githubID"
                         placeholder="Github 아이디를 입력해주세요"
                         onChange={onChange}
                         value={userDataUpdate.githubID}
