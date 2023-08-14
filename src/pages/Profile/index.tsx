@@ -78,7 +78,7 @@ const Mypage = () => {
     return (
         <>
             <TitlePath
-                title={`${String(myId) === id ? "마이" : userData.name} 페이지`}
+                title={String(myId) === id ? "마이페이지" : `${userData.name} 페이지`}
                 path="Menu > 프로필"
             />
             <UpdateProfile
@@ -94,7 +94,7 @@ const Mypage = () => {
             />
             <S.MypageContainer>
                 <S.User>
-                    <div>
+                    <S.UserBox>
                         <S.UserSection>
                             <UserIcon backWidth="80px" iconWidth={44} />
                             <S.UserIntro>
@@ -123,7 +123,7 @@ const Mypage = () => {
                                 </S.UserContect>
                             </S.UserContectInfo>
                         </S.UserContectSection>
-                    </div>
+                    </S.UserBox>
                     {Authority()}
                 </S.User>
                 <S.Stack>
