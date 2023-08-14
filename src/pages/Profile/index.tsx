@@ -78,7 +78,7 @@ const Mypage = () => {
     return (
         <>
             <TitlePath
-                title={`${String(myId) === id ? "마이" : userData.name} 페이지`}
+                title={String(myId) === id ? "마이페이지" : `${userData.name} 페이지`}
                 path="Menu > 프로필"
             />
             <UpdateProfile
