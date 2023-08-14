@@ -94,7 +94,7 @@ const Mypage = () => {
             />
             <S.MypageContainer>
                 <S.User>
-                    <div>
+                    <S.UserBox>
                         <S.UserSection>
                             <UserIcon backWidth="80px" iconWidth={44} />
                             <S.UserIntro>
@@ -123,7 +123,7 @@ const Mypage = () => {
                                 </S.UserContect>
                             </S.UserContectInfo>
                         </S.UserContectSection>
-                    </div>
+                    </S.UserBox>
                     {Authority()}
                 </S.User>
                 <S.Stack>
