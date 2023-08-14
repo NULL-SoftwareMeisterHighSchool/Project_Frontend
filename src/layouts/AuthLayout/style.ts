@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const LoginImage = styled.div<{ src: string }>`
   height: 100%;
-  width: 60%;
+  width: 55%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,14 +39,18 @@ export const LoginImage = styled.div<{ src: string }>`
 export const AuthForm = styled.div`
   display: flex;
   justify-content: center;
+  height: 100vh;
   flex: 1;
   padding: 0px 40px;
+  
   > div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 64px;
-
     width: 400px;
+    @media screen and (max-width: 500px) {
+      width: 95%;
+    }
   }
 `;
