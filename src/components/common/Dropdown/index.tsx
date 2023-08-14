@@ -8,8 +8,8 @@ interface PropTypes {
     describe: string;
     items: ItemType[];
     width?: string;
-    val: ItemType | undefined;
-    setVal: React.Dispatch<React.SetStateAction<ItemType | undefined>>;
+    val: ItemType;
+    setVal: React.Dispatch<React.SetStateAction<ItemType>>;
 }
 
 const Dropdown = ({

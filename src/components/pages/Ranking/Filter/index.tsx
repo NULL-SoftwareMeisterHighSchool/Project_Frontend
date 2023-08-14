@@ -27,35 +27,32 @@ const Filter = ({ setFilterData }: FilterProps) => {
         { text: "부산" },
     ];
 
-    const userFilterClick = (e: any) => {
-        setUserFilterValue({ text: e.target.innerText });
+    const userFilterClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        setUserFilterValue({ text: e.currentTarget.innerHTML });
     };
 
-    const [userFilterValue, setUserFilterValue] = useState<
-        ItemType | undefined
-    >({ text: "전체" });
-    const [schoolFilterValue, setSchoolFilterValue] = useState<
-        ItemType | undefined
-    >({ text: "전체 학교" });
+    const [userFilterValue, setUserFilterValue] = useState<ItemType>({
+        text: "전체",
+    });
+    const [schoolFilterValue, setSchoolFilterValue] = useState<ItemType>({
+        text: "전체 학교",
+    });
 
-
-    useEffect(()=>{
+    useEffect(() => {
         setFilterData({
-            user: userFilterValue?.text!,
-            school:schoolFilterValue?.text!
-        })
-    },[userFilterValue, schoolFilterValue])
+            user: userFilterValue.text,
+            school: schoolFilterValue.text,
+        });
+    }, [userFilterValue, schoolFilterValue]);
 
-    
     return (
         <S.HeaderContainer>
             <S.FilterContainer>
-                {userFilter.map((v, i) => {
+                {userFilter.map((v) => {
                     return (
                         <S.Filter
-                            onClick={(e: React.MouseEvent) =>
-                                userFilterClick(e)
-                            }
+                            key={"filter" + v.text}
+                            onClick={userFilterClick}
                             select={userFilterValue?.text === v.text}
                         >
                             {v.text}
