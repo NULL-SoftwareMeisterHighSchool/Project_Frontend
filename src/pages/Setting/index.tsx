@@ -4,7 +4,6 @@ import UserSetting from "@components/pages/Setting/UserSetting.tsx";
 import { Infomation } from "@assets/images/icon/Infomation";
 import { color } from "@styles/theme.style";
 import { Lock } from "@assets/images/icon/Lock";
-import { Mail } from "@assets/images/icon/Mail";
 import { RemoveCircle } from "@assets/images/icon/RemoveCircle";
 import { useEffect, useState } from "react";
 import Modal from "@components/common/modal";
