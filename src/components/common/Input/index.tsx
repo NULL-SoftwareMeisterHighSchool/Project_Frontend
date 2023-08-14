@@ -25,6 +25,7 @@ const Input = ({
     onKeyDown,
     min,
     max,
+    maxLength
 }: InputPropTypes) => {
     return (
         <div>
@@ -51,6 +52,7 @@ const Input = ({
                 type={type}
                 name={name}
                 value={value}
+                maxLength={maxLength}
             />
         </div>
     );

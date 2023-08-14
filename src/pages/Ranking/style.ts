@@ -59,3 +59,9 @@ export const RankHeader = styled.div`
     }
 
 `;
+
+export const  LinePersonContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+`

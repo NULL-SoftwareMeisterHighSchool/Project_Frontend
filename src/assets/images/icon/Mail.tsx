@@ -8,10 +8,10 @@ export const Mail: React.FC<React.SVGProps<SVGSVGElement>> = props => {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g clip-path="url(#clip0_3313_2698)">
+      <g clipPath="url(#clip0_3313_2698)">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M6 13.3662L23.4855 23.8575C23.8022 24.0475 24.1978 24.0475 24.5145 23.8575L42 13.3662V37H6V13.3662ZM6 11.0338V11H42V11.0338L24 21.8338L6 11.0338Z"
         />
       </g>

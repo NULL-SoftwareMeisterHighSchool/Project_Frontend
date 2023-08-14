@@ -35,13 +35,13 @@ export const getUser = async (id : string | undefined) => {
 export const putEditMe = async ({
     bio,
     stacks,
-    githubURL,
+    githubID,
     portfolioURL,
 }: putEditMeProps) => {
     const resPutEditMe = await instance.put(`${router}/me`, {
         bio,
         stacks,
-        githubURL,
+        githubID,
         portfolioURL,
     });
 
