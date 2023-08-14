@@ -28,7 +28,7 @@ const Mypage = () => {
         name: "",
         email: "",
         bio: "",
-        githubURL: "",
+        githubID: "",
         portfolioURL: "",
         stacks: [],
         articles: {
@@ -78,7 +78,7 @@ const Mypage = () => {
     return (
         <>
             <TitlePath
-                title={`${String(myId) === id ? "마이" : userData.name} 페이지`}
+                title={String(myId) === id ? "마이페이지" : `${userData.name} 페이지`}
                 path="Menu > 프로필"
             />
             <UpdateProfile
@@ -87,14 +87,14 @@ const Mypage = () => {
                 setVal={setUpdateProfileOpen}
                 userData={{
                     bio: userData.bio,
-                    githubURL: userData.githubURL,
+                    githubID: userData.githubID,
                     portfolioURL: userData.portfolioURL,
                     stacks: userData.stacks,
                 }}
             />
             <S.MypageContainer>
                 <S.User>
-                    <div>
+                    <S.UserBox>
                         <S.UserSection>
                             <UserIcon backWidth="80px" iconWidth={44} />
                             <S.UserIntro>
@@ -119,11 +119,11 @@ const Mypage = () => {
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Github</S.UserContectTitle>
                                 <S.UserContect>
-                                    {userData.githubURL}
+                                    {userData.githubID}
                                 </S.UserContect>
                             </S.UserContectInfo>
                         </S.UserContectSection>
-                    </div>
+                    </S.UserBox>
                     {Authority()}
                 </S.User>
                 <S.Stack>

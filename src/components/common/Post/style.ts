@@ -15,13 +15,12 @@ export const Post = styled(Link)<{padding?:string}>`
 	text-decoration: none;
 
 	width: 100%;
-	min-width: max-content;
+	min-width: 250px;
 	height: 53px;
 `;
 
 export const PostTitle = styled(Body2)`
-	width: 240px;
-	height: 17px;
+	width: max-content;
 
 	line-height: 17px;
 
@@ -41,12 +40,15 @@ export const PostInfo = styled.div`
 
 
 export const PostName = styled(Body2)`
-	width: fit-content;
+	width: max-content;
 	height: 17px;
 
 	line-height: 17px;
 
 	color: ${color.grayDark1};
+	@media (max-width: 360px) {
+		display: none;
+	}
 `;
 
 export const PostDate = styled(Body2)`
@@ -56,4 +58,7 @@ export const PostDate = styled(Body2)`
 	line-height: 17px;
 
 	color: ${color.grayBase};
+	@media (max-width: 400px) {
+		display: none;
+	}
 `;
