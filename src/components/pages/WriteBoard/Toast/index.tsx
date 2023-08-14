@@ -1,7 +1,7 @@
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/i18n/ko-kr";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { instance } from "@apis/index";
 
 type Props = {
@@ -20,6 +20,7 @@ const BASE_URL = `${import.meta.env.VITE_ARTICLE}`;
 const Toast = ({ content, setContent2 }: Props) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const editorRef = useRef<any>(null); //error해결을 위해 any 사용
+    const [preview, setPreview] = useState(false);
     const onChange = () => {
         /** error : 'editorRef.current'은(는) 'null'일 수 있습니다. 발생 - 일단 해결*/
         setContent2(editorRef.current.getInstance().getMarkdown());
@@ -30,13 +31,21 @@ const Toast = ({ content, setContent2 }: Props) => {
         setContent2(content);
     }, [content]);
 
+    window.onresize = () => {
+        if(window.innerWidth < 1000){
+            setPreview(false);
+        }else{
+            setPreview(true);
+        }
+    }
+
     return (
         <Editor
             initialValue={content ?? "## 내용을 입력해주세요."}
             // onChange={() => setContents(editorRef.current.getInstance().getHTML())}
             onChange={onChange}
             ref={editorRef}
-            previewStyle="vertical"
+            previewStyle={preview ? "vertical" : "tab"}
             initialEditType="markdown"
             autofocus={true}
             hideModeSwitch={true}
