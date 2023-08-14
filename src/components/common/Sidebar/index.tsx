@@ -26,7 +26,7 @@ export const Sidebar = () => {
     const [isOpen, setIsOpen] = useState (false) ;
     const [category, setCategory] = useState("메인");
     const [showPopUp, setShowPopUp] = useState<boolean>(false);
-    const outside = useRef<HTMLElement>(null);
+    const outside = useRef<HTMLElement>();
     const onSelect = useCallback(
         (category: SetStateAction<string>) => setCategory(category),
         []
@@ -54,7 +54,7 @@ export const Sidebar = () => {
     }, []);
 
     const handlerOutsie = (e: React.ChangeEvent<HTMLElement>) => {
-        if (!outside.current.contains(e.target)) {
+        if (outside.current &&!outside.current.contains(e.target)) {
             setIsOpen(false);
         }
     }
