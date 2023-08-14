@@ -170,7 +170,7 @@ const Main = () => {
                     <Banner
                         title="인기 게시글"
                         subtitle="인기 게시글을 만나보세요"
-                        buttonValue="게시글 더보기"
+                        buttonValue="더보기"
                         to="/blog"
                     />
                     <S.Board>
