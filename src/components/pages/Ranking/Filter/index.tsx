@@ -31,18 +31,24 @@ const Filter = ({ setFilterData }: FilterProps) => {
         setUserFilterValue({ text: e.currentTarget.innerHTML });
     };
 
-    const [userFilterValue, setUserFilterValue] = useState<ItemType>({
+    const [userFilterValue, setUserFilterValue] = useState<
+        ItemType | undefined
+    >({
         text: "전체",
     });
-    const [schoolFilterValue, setSchoolFilterValue] = useState<ItemType>({
+    const [schoolFilterValue, setSchoolFilterValue] = useState<
+        ItemType | undefined
+    >({
         text: "전체 학교",
     });
 
     useEffect(() => {
-        setFilterData({
-            user: userFilterValue.text,
-            school: schoolFilterValue.text,
-        });
+        if (userFilterValue && schoolFilterValue) {
+            setFilterData({
+                user: userFilterValue.text,
+                school: schoolFilterValue.text,
+            });
+        }
     }, [userFilterValue, schoolFilterValue]);
 
     return (
