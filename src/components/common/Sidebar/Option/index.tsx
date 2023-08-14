@@ -9,11 +9,14 @@ interface OptionPropsType {
 	to : string;
 	pagename : string;
 	category: SetStateAction<string>;
+	// eslint-disable-next-line @typescript-eslint/ban-types
 	onSelect: Function;
 	children: ReactNode;
+	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface IconPropsType {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	children: any;
 	fill: string;
 }
@@ -27,12 +30,16 @@ export const Option = ({
 	pagename,
 	category,
 	onSelect,
-	children
+	children,
+	setIsOpen
 }:OptionPropsType) => {
 	return (
 		<S.Option 
 		to={to}
-		onClick={() => onSelect(pagename)}
+		onClick={()=>{
+			onSelect(pagename);
+			setIsOpen(false);
+		}}
 		style={category === pagename ? {background: "#0084DB"} : {}}
 		>
 			<Icon fill = {category === pagename ? "#FFFFFF" : "#7A8184"}>{children}</Icon>
