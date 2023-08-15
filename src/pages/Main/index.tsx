@@ -137,7 +137,7 @@ const Main = () => {
                             </>
                         ) : (
                             <S.ScoreTitleLogin onClick={()=>navigate('/login')}>
-                                로그인 후 이용가능합니다.
+                                로그인
                             </S.ScoreTitleLogin>
                         )}
                     </S.CircularText>
