@@ -1,17 +1,20 @@
 import styled from "styled-components";
 import { color } from "@styles/theme.style";
 
+
 export const Title = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding-top: 100px;
 `;
 export const BackArrow = styled.img`
   width: 24px;
   height: 24px;
   transform-origin: 100% 100%;
   position: absolute;
-  left: -54px;
+  left: -40px;
+  top:5px;
 `;
 export const ArrowContainer = styled.div`
   display: flex;
@@ -32,6 +35,7 @@ export const SubmitContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding-bottom: 50px;
   > div {
     display: flex;
     gap: 10px;
