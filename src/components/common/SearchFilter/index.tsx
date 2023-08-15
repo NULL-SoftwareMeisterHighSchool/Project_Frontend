@@ -29,7 +29,8 @@ const SearchFilter = ({
         text: "최신순",
     });
     useEffect(() => {
-        setFilterData(newFilter?.text!);
+        if(newFilter)
+            setFilterData(newFilter.text);
     }, [newFilter]);
 
     const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +43,7 @@ const SearchFilter = ({
                 value={searchVal}
                 onChange={(e) => onChangeSearch(e)}
                 placeholder="Placeholder"
-                width="800px"
+                width="80%"
             />
             <Dropdown
                 val={newFilter}

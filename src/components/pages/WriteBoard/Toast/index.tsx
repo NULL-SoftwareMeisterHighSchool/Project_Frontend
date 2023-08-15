@@ -18,16 +18,35 @@ export type HookMap = {
 const BASE_URL = `${import.meta.env.VITE_ARTICLE}`;
 
 const Toast = ({ content, setContent2 }: Props) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const editorRef = useRef<any>(null); //error해결을 위해 any 사용
+    const [preview, setPreview] = useState(true);
     const onChange = () => {
         /** error : 'editorRef.current'은(는) 'null'일 수 있습니다. 발생 - 일단 해결*/
         setContent2(editorRef.current.getInstance().getMarkdown());
     };
+    
+    window.onresize = () => {
+        if(window.innerWidth < 1000){
+            setPreview(false);
+        }else{
+            setPreview(true);
+        }
+    }
 
     useEffect(() => {
         editorRef.current?.getInstance().setMarkdown(content);
         setContent2(content);
     }, [content]);
+
+    useEffect(()=>{
+        if(window.innerWidth < 1000){
+            setPreview(false);
+        }else{
+            setPreview(true);
+        }
+    },[]);
+    
 
     return (
         <Editor
@@ -35,7 +54,7 @@ const Toast = ({ content, setContent2 }: Props) => {
             // onChange={() => setContents(editorRef.current.getInstance().getHTML())}
             onChange={onChange}
             ref={editorRef}
-            previewStyle="vertical"
+            previewStyle={preview ? "vertical" : "tab"}
             initialEditType="markdown"
             autofocus={true}
             hideModeSwitch={true}
@@ -57,6 +76,7 @@ const Toast = ({ content, setContent2 }: Props) => {
                             }
                         );
                         callback(res.data.url, `image`);
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     } catch (err: any) {
                         console.error(err);
                         callback(`이미지 업로드 실패, ${err.message}`);

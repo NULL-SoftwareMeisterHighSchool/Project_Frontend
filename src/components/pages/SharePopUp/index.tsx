@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Close } from '@assets/images/icon/Close';
 import { ContentPaste } from '@assets/images/icon/ContentPaste';
 import { color } from '@styles/theme.style';
-import { useLocation } from 'react-router-dom';
 import Modal from '@components/common/modal';
 import { alertError, alertSuccess } from '@utils/toastify';
 
@@ -14,6 +13,7 @@ interface PropTypes {
 const PopUp = ({ setShowPopUp }:PropTypes) => {
     const location = window.document.location.href;
     const [isHovered, setIsHovered] = useState(false);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const handleCopyClipBoard = async (text: string) => {
         try {
             await navigator.clipboard.writeText(location);

@@ -17,6 +17,7 @@
     "@types/node": "^18.15.11",
     "@types/react-js-pagination": "^3.0.4",
     "@types/styled-components": "^5.1.26",
+    "@vercel/analytics": "^1.0.2",
     "axios": "^1.4.0",
     "react": "latest",
     "react-circular-progressbar": "^2.1.0",

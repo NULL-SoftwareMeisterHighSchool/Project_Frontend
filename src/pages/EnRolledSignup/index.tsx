@@ -70,7 +70,7 @@ const EnRolledSignup = () => {
         },
     });
 
-    const [pageNum, setPageNum] = useState(1);
+    const [pageNum, setPageNum] = useState(2);
 
     const [userData, setUserData] = useState({
         school: "",
@@ -127,7 +127,7 @@ const EnRolledSignup = () => {
     const onClickSignUp = () => {
         if (userData.name === "") {
             alertWarning("이름를 입력해주세요.");
-        } else if (userData.password === "") {
+        } else if (userData.userID === "") {
             alertWarning("아이디를 입력해주세요.");
         } else if (userData.password === "") {
             alertWarning("비밀번호를 입력해주세요.");
