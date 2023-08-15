@@ -18,7 +18,7 @@ import { getboardDetail, postLike, deleteBlog } from "@apis/article";
 import { articleIdAtom } from "@atoms/articleId";
 import { useSetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
-import useDate from "@hooks/useDate";
+import UseDate from "@hooks/useDate";
 import { alertError, alertSuccess } from "@utils/toastify";
 import { BLOGDETAILTYPE } from "../../types/blog";
 
@@ -122,7 +122,7 @@ const BoardDetail = () => {
                             <UserIcon backWidth="48px" iconWidth={26} />
                             <S.ProfileInfo>
                                 <S.Name>{data.author.name}</S.Name>
-                                <S.Date>{useDate(data.createdAt).date}</S.Date>
+                                <S.Date>{UseDate(data.createdAt).date}</S.Date>
                             </S.ProfileInfo>
                         </S.Profile>
                     </S.Thumbnail>
@@ -167,7 +167,7 @@ const BoardDetail = () => {
                                 <Share fill={color.grayDark1} width="24px" />
                             </S.IconPointer>
                             {data.isAuthor ? (
-                                <>
+                                <S.MyIcon>
                                     <S.UpdateIcon to={"/updateblog/" + id}>
                                         <Edit
                                             fill={color.primaryBase}
@@ -193,7 +193,7 @@ const BoardDetail = () => {
                                             게시글 삭제하기
                                         </S.UpdateText>
                                     </S.DeleteIcon>
-                                </>
+                                </S.MyIcon>
                             ) : (
                                 ""
                             )}
@@ -209,8 +209,8 @@ const BoardDetail = () => {
                                 username={post.author.name}
                                 content={post.content}
                                 to={"/profile/" + post.author.id}
-                                date={useDate(post.createdAt).date}
-                                time={useDate(post.createdAt).time}
+                                date={UseDate(post.createdAt).date}
+                                time={UseDate(post.createdAt).time}
                                 func={refetch}
                             />
                         ))}

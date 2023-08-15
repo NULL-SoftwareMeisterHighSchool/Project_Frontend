@@ -13,7 +13,7 @@ import { getBlog } from "@apis/article";
 import { useState, useEffect } from "react";
 import * as S from "./style";
 import TitlePath from "@components/common/TitlePath";
-import useDate from "@hooks/useDate";
+import UseDate from "@hooks/useDate";
 import { BLOGTYPE } from "../../types/blog";
 import { useRecoilValue } from "recoil";
 import { profileIdAtom, profileNameAtom } from "@atoms/profile";
@@ -170,7 +170,7 @@ const Main = () => {
                     <Banner
                         title="인기 게시글"
                         subtitle="인기 게시글을 만나보세요"
-                        buttonValue="게시글 더보기"
+                        buttonValue="더보기"
                         to="/blog"
                     />
                     <S.Board>
@@ -180,7 +180,7 @@ const Main = () => {
                                 id={post.id}
                                 title={post.title}
                                 name={post.author.name}
-                                date={useDate(post.createdAt).date}
+                                date={UseDate(post.createdAt).date}
                                 to={"/blogdetail/" + post.id}
                             />
                         ))}
@@ -200,7 +200,7 @@ const Main = () => {
                                 id={post.id}
                                 title={post.title}
                                 name={post.author.name}
-                                date={useDate(post.createdAt).date}
+                                date={UseDate(post.createdAt).date}
                                 to={"/blogdetail/" + post.id}
                             />
                         ))}

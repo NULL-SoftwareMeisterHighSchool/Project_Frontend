@@ -7,9 +7,9 @@ import { RightArrow } from "@assets/images/icon/RightArrow";
 import { color } from "@styles/theme.style";
 import { getBlog } from "@apis/article";
 import Pagination from "react-js-pagination";
-import useDate from "@hooks/useDate";
 import TitlePath from "@components/common/TitlePath";
 import { BLOGTYPE } from "../../types/blog";
+import UseDate from "@hooks/useDate";
 
 type blogDataProps = {
     articles: BLOGTYPE[];
@@ -82,7 +82,7 @@ const Board = () => {
                             id={post.id}
                             name={post.author.name}
                             title={post.title}
-                            date={useDate(post.createdAt).date}
+                            date={UseDate(post.createdAt).date}
                             to={"/blogdetail/"+post.id}
                         />
                     ))}

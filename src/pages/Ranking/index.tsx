@@ -13,7 +13,7 @@ type rankingDataType = {
     admissionYear: number;
     commitCount: number;
     score: number;
-    id:number
+    id: number;
 };
 
 const Ranking = () => {
@@ -31,9 +31,9 @@ const Ranking = () => {
         }
     );
 
-    useEffect(()=>{
+    useEffect(() => {
         refetch();
-    },[])
+    }, []);
     useEffect(() => {
         getRank({ setRankData, filterData });
     }, [filterData]);
@@ -68,10 +68,10 @@ const Ranking = () => {
                 <S.RankContianer>
                     {rankData.map((v, i) => {
                         return (
-                            <>
+                            <S.LinePersonContainer key={"rank" + i}>
                                 <Ranks {...v} rank={i + 1} />
                                 <S.Line />
-                            </>
+                            </S.LinePersonContainer>
                         );
                     })}
                 </S.RankContianer>

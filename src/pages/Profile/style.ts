@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { color } from "@styles/theme.style";
-import { Title ,Body2, TitleLarge, BodyStrong, BodyLarge } from "@styles/text.style";
+import { Title ,Body2, BodyLarge } from "@styles/text.style";
 
 export const MypageContainer = styled.div`
     display: flex;
@@ -24,11 +24,18 @@ export const User = styled.div`
     }
 `;
 
+export const UserBox = styled.div`
+    @media (max-width: 1250px) {
+        display: flex;
+        flex-direction: column;
+    }
+`;
+
 export const UserSection = styled.div`
     display: flex;
     align-items: center;
-    min-width: max-content;
-    gap: 20px
+    min-width: fit-content;
+    gap: 20px;
 `;
 
 export const BtnArea = styled.div`
@@ -67,6 +74,7 @@ export const UserInformation = styled.div`
 `;
 
 export const UserName = styled(Title)`
+    width: max-content;
 `;
 
 export const Email = styled(Body2)`
@@ -85,6 +93,9 @@ export const UserContectSection = styled.div`
     gap: 12px 0px;
     @media (max-width:1350px){
         padding: 0px 12px;
+    }
+    @media (max-width: 1250px) {
+        padding: 0px 0px;
     }
 `;
 
