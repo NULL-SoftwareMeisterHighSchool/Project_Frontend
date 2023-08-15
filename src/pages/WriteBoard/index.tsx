@@ -4,17 +4,10 @@ import * as S from "./style";
 import { postWrite } from "@apis/article";
 import Toast from "@components/pages/WriteBoard/Toast";
 import { articleTypeAtom } from "@atoms/articleType";
-import {
-    RecoilRoot,
-    atom,
-    selector,
-    useRecoilState,
-    useRecoilValue,
-} from "recoil";
+import { useRecoilValue } from "recoil";
 import { alertError, alertSuccess } from "@utils/toastify";
 import { profileIdAtom } from "@atoms/profile";
 import { useNavigate } from "react-router-dom";
-import { getCookie } from "@utils/cookies";
 
 const WriteBoard = () => {
     const [title, setTitle] = useState("");
@@ -59,6 +52,7 @@ const WriteBoard = () => {
                 onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
                     setTitle(e.target.value)
                 }
+                maxLength={20}
             />
             <Toast content={content} setContent2={setContent} />
         </>
