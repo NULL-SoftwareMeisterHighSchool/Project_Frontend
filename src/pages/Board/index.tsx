@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import Post from "@components/common/Post";
-import SearchFilter from "@components/pages/SkillBlog/SearchFilter";
+import SearchFilter from "@components/common/SearchFilter";
 import { LeftArrow } from "@assets/images/icon/LeftArrow";
 import { RightArrow } from "@assets/images/icon/RightArrow";
 import { color } from "@styles/theme.style";
