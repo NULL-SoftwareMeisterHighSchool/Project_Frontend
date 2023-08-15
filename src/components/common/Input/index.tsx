@@ -9,6 +9,7 @@ export interface InputPropTypes extends InputHTMLAttributes<HTMLInputElement> {
     state?: InputStateType;
     width?: string;
     txtBtn?: string;
+    readOnly? :boolean;
 }
 
 const Input = ({
@@ -25,7 +26,8 @@ const Input = ({
     onKeyDown,
     min,
     max,
-    maxLength
+    maxLength,
+    readOnly = false
 }: InputPropTypes) => {
     return (
         <div>
@@ -53,6 +55,7 @@ const Input = ({
                 name={name}
                 value={value}
                 maxLength={maxLength}
+                readOnly={readOnly}
             />
         </div>
     );

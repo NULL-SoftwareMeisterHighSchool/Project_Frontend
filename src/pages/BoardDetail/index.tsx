@@ -167,7 +167,7 @@ const BoardDetail = () => {
                                 <Share fill={color.grayDark1} width="24px" />
                             </S.IconPointer>
                             {data.isAuthor ? (
-                                <>
+                                <S.MyIcon>
                                     <S.UpdateIcon to={"/updateblog/" + id}>
                                         <Edit
                                             fill={color.primaryBase}
@@ -193,7 +193,7 @@ const BoardDetail = () => {
                                             게시글 삭제하기
                                         </S.UpdateText>
                                     </S.DeleteIcon>
-                                </>
+                                </S.MyIcon>
                             ) : (
                                 ""
                             )}

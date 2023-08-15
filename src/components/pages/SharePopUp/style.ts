@@ -76,4 +76,10 @@ export const Url = styled(BodyLarge2)`
     display: flex;
     align-items: center;
     gap: 24px;
+
+    @media screen and (max-width: 450px) {
+        div:nth-child(1){
+            display: none;
+        }
+    }
 `;

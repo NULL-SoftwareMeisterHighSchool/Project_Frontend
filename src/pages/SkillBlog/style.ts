@@ -1,5 +1,3 @@
-import { Body2, TitleLarge } from "@styles/text.style";
-import { color } from "@styles/theme.style";
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
@@ -16,7 +14,7 @@ export const BlogContainer = styled.div`
   grid-template-columns:1fr;
   grid-template-rows:auto;
 
-  @media screen and (min-width: 900px){
+  @media screen and (min-width: 650px){
     grid-template-columns:repeat(2, 1fr);
   }
   @media screen and (min-width: 1250px){
