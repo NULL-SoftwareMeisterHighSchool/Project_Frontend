@@ -20,7 +20,7 @@ export type getGitProps = {
 export type putEditMeProps = {
     bio: string;
     stacks: string[];
-    githubURL: string;
+    githubID: string;
     portfolioURL: string;
 };
 

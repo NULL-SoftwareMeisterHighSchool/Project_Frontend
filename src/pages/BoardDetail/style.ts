@@ -38,7 +38,8 @@ export const Post = styled.main`
     flex-direction: column;
     align-items: flex-start;
     
-    width: 640px !important;
+    max-width: 680px;
+    width: 100%;
     margin: 0 auto;
     gap: 40px;
 `; 
@@ -52,7 +53,6 @@ export const Thumbnail = styled.div`
 
 export const PostTitle = styled(TitleLarge2)`
     width: fit-content;
-    height: 57px;
 
     color: ${color.black};
 `;
@@ -76,13 +76,10 @@ export const ProfileInfo = styled.div`
     gap: 4px;
 
     width: fit-content;
-    height: 40px;
 `;
 
 export const Name = styled(BodyLarge2)`
     width: fit-content;
-    height: 19px;
-
     line-height: 19px;
 
     color: #5C5C5C;
@@ -90,8 +87,6 @@ export const Name = styled(BodyLarge2)`
 
 export const Date = styled(Body2)`
     width: fit-content;
-    height: 17px;
-
     line-height: 17px;
     
     color: #757575;
@@ -132,6 +127,16 @@ export const IconPointer = styled(Body2)`
 
 export const IconText = styled(Body2)`
     color: ${color.grayDark1};
+`;
+
+export const MyIcon = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+
+    @media (max-width: 1000px) {
+        flex-direction: column;
+    }
 `;
 
 export const UpdateIcon = styled(Link)`
@@ -178,8 +183,6 @@ export const Reply = styled.div`
 `;
 
 export const WhatFollows = styled(SubTitle)`
-    height: 32px;
-
     line-height: 160%;
     text-align: center;
 
@@ -193,5 +196,4 @@ export const Board = styled.div`
 	padding: 0px;
 
 	width: 100%;
-	height: 424px;
 `;
