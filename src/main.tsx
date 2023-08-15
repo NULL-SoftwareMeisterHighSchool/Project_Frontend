@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { CookiesProvider } from "react-cookie";
 import { RecoilRoot } from "recoil";
 import { ToastContainer } from "react-toastify";
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient();
 
@@ -21,9 +22,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
             <QueryClientProvider client={queryClient}>
                 <GlobalStyle />
                 <RouterProvider router={App} />
-                <ToastContainer
-                    limit={3}
-                />
+                <ToastContainer limit={3} />
+                <Analytics />
             </QueryClientProvider>
         </CookiesProvider>
     </RecoilRoot>
