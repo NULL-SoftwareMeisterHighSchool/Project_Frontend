@@ -2,7 +2,6 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -21,17 +20,22 @@ export default defineConfig({
       "@layouts": resolve(__dirname, "src/layouts"),
     },
   },
-  // build: {
-  //   rollupOptions: {
-  //     external: ['@toast-ui/editor', '@toast-ui/editor/dist/toastui-editor.css'],
-  //   },
-  // },
-  // optimizeDeps: {
-  //   include: ['@toast-ui/react-editor'],
-  // },
-  esbuild:{
-    define:{
-      this:"window"
+  server: {
+    proxy: {
+      '^/(?!api).*$': {
+        target: 'https://null-somein.kro.kr/',
+        rewrite: (path) => {
+          return path;
+        }
+      }
+    },
+    fs: {
+      strict: false // Allow serving index.html for all URLs
     }
-  }
+  },
+  esbuild: {
+    define: {
+      this: "window"
+    }
+  },base: './'
 });
