@@ -190,7 +190,7 @@ const Main = () => {
                     <Banner
                         title="기술 블로그"
                         subtitle="전공 지식을 습득해 보세요"
-                        buttonValue="기술 더보기"
+                        buttonValue="더보기"
                         to="/skill"
                     />
                     <S.Board>
