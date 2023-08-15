@@ -1,5 +1,5 @@
 import * as S from "./style";
-import SearchFilter from "@components/pages/SkillBlog/SearchFilter";
+import SearchFilter from "@components/common/SearchFilter";
 import BlogPost from "@components/pages/SkillBlog/BlogPost";
 import { SkillBlogDefaultImg } from "@assets/images/allfiles";
 import TitlePath from "@components/common/TitlePath";
