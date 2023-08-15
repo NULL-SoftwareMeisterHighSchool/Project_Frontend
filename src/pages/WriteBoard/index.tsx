@@ -12,7 +12,8 @@ import { useNavigate } from "react-router-dom";
 const WriteBoard = () => {
     const [title, setTitle] = useState("");
     const type = useRecoilValue(articleTypeAtom);
-    const [content, setContent] = useState("");
+    const [content] = useState("");
+    const[, setContent2] = useState("");
     const { mutate: writeMutate } = useMutation(postWrite, {
         onSuccess: () => {
             alertSuccess("글 작성에 성공했습니다.");
@@ -54,7 +55,7 @@ const WriteBoard = () => {
                 }
                 maxLength={20}
             />
-            <Toast content={content} setContent2={setContent} />
+            <Toast content={content} setContent2={setContent2} />
         </>
     );
 };
