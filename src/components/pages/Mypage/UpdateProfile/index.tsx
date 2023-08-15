@@ -3,7 +3,7 @@ import * as S from "./style";
 import { BodyStrong, Title } from "@styles/text.style";
 import { Clear } from "@assets/images/icon/Clear";
 import Input from "@components/common/Input";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { putEditMe } from "@apis/users";
 import { useMutation } from "react-query";
 import { alertError, alertWarning } from "@utils/toastify";
@@ -11,10 +11,10 @@ import { alertError, alertWarning } from "@utils/toastify";
 interface UpdateProfileProps {
     val: boolean;
     setVal: React.Dispatch<React.SetStateAction<boolean>>;
-    userData: UserDateType;
+    userData: UseDateType;
     refetch: () => void;
 }
-interface UserDateType {
+interface UseDateType {
     bio: string;
     githubID: string;
     portfolioURL: string;
@@ -27,7 +27,7 @@ const UpdateProfile = ({
     refetch,
 }: UpdateProfileProps) => {
     const [inputSkill, setInutSkill] = useState<string>("");
-    const [userDataUpdate, setUserDataUpdate] = useState<UserDateType>({
+    const [userDataUpdate, setUserDataUpdate] = useState<UseDateType>({
         bio: "",
         githubID: "",
         portfolioURL: "",
@@ -61,17 +61,12 @@ const UpdateProfile = ({
         });
     };
     useEffect(() => {
-        setUserDataUpdate({ ...userData});
-    }, []);
+        setUserDataUpdate(userData);
+    }, [userData]);
 
-    useEffect(() => {
-        changeBtnState();
-    }, [userDataUpdate]);
-
-    const changeBtnState = () => {
+    const changeBtnState = useCallback(() => {
         const arr1 = userData.stacks;
         const arr2 = userDataUpdate.stacks;
-
         if (
             userDataUpdate.githubID === userData.githubID &&
             userDataUpdate.bio === userData.bio &&
@@ -83,7 +78,11 @@ const UpdateProfile = ({
         } else {
             setBtnState(true);
         }
-    };
+    },[userData.bio, userData.githubID, userData.portfolioURL, userData.stacks, userDataUpdate.bio, userDataUpdate.githubID, userDataUpdate.portfolioURL, userDataUpdate.stacks]);
+
+    useEffect(() => {
+        changeBtnState();
+    }, [changeBtnState]);
 
     const { mutate: updateMutate } = useMutation(putEditMe, {
         onSuccess: () => {
@@ -108,13 +107,14 @@ const UpdateProfile = ({
                         title="한줄소개"
                         name="bio"
                         placeholder="한줄소개를 입력해주세요"
+                        maxLength={50}
                         onChange={onChange}
                         value={userDataUpdate.bio}
                     />
                     <Input
                         width="100%"
                         title="Github 아이디"
-                        name="githubURL"
+                        name="githubID"
                         placeholder="Github 아이디를 입력해주세요"
                         onChange={onChange}
                         value={userDataUpdate.githubID}
@@ -169,12 +169,7 @@ const UpdateProfile = ({
                     <S.UpdateBtn
                         disabled={!btnState}
                         onClick={() =>
-                            updateMutate({
-                                bio: userDataUpdate.bio,
-                                stacks: userDataUpdate.stacks,
-                                githubURL: userDataUpdate.githubID,
-                                portfolioURL: userDataUpdate.portfolioURL,
-                            })
+                            updateMutate(userDataUpdate)
                         }
                     >
                         <BodyStrong>프로필 수정하기</BodyStrong>

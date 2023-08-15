@@ -11,26 +11,29 @@ import { Trophy } from "@assets/images/icon/Trophy";
 import { User } from "@assets/images/icon/User";
 import { Setting } from "@assets/images/icon/Setting";
 import { Edit } from "@assets/images/icon/Edit";
+import { Dehaze } from "@assets/images/icon/Dhaze";
 import WritePopUp from "@components/common/WritePopUp";
 import UserIcon from "@components/common/UserIcon";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { profileIdAtom, profileNameAtom } from "@atoms/profile"
-import { SetStateAction, useCallback, useEffect, useState } from "react";
+import { SetStateAction, useCallback, useEffect, useState, useRef } from "react";
 import { useQuery } from "react-query";
 import { getUserMeTiny } from "@apis/users";
 import { useNavigate } from "react-router-dom";
 import { BodyStrong } from "@styles/text.style";
 
 export const Sidebar = () => {
+    const [isOpen, setIsOpen] = useState (false) ;
     const [category, setCategory] = useState("메인");
     const [showPopUp, setShowPopUp] = useState<boolean>(false);
+    const outside = useRef<HTMLElement>(null);
     const onSelect = useCallback(
         (category: SetStateAction<string>) => setCategory(category),
         []
     );
     const [userData, setUserData] = useState({ id: 0, name: "" });
     const [myId, setMyId] = useRecoilState(profileIdAtom);
-    const [myName, setMyName] = useRecoilState(profileNameAtom);
+    const setMyName = useSetRecoilState(profileNameAtom);
 
     const navigate = useNavigate();
 
@@ -50,9 +53,22 @@ export const Sidebar = () => {
         refetch();
     }, []);
 
+    const handlerOutsie = (e: React.ChangeEvent<HTMLElement>) => {
+        if (outside.current &&!outside.current.contains(e.target)) {
+            setIsOpen(false);
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handlerOutsie as unknown as EventListener);
+        return () => {
+          document.removeEventListener('mousedown', handlerOutsie as unknown as EventListener);
+        };
+    });
+
     return (
-        <>
-            <S.Bar>
+        <S.Container>
+            <S.Bar className={isOpen ? "open" : ""} ref={outside}>
                 {myId ? (
                     <>
                         <S.User>
@@ -78,6 +94,7 @@ export const Sidebar = () => {
                         pagename="메인"
                         category={category}
                         onSelect={onSelect}
+                        setIsOpen={setIsOpen}
                     >
                         <Menu width={24} fill={color.white} />
                     </Option>
@@ -86,6 +103,7 @@ export const Sidebar = () => {
                         pagename="게시판"
                         category={category}
                         onSelect={onSelect}
+                        setIsOpen={setIsOpen}
                     >
                         <BulletinBoard width={24} />
                     </Option>
@@ -94,6 +112,7 @@ export const Sidebar = () => {
                         pagename="기술 블로그"
                         category={category}
                         onSelect={onSelect}
+                        setIsOpen={setIsOpen}
                     >
                         <Computer width={24} />
                     </Option>
@@ -102,6 +121,7 @@ export const Sidebar = () => {
                         pagename="랭킹"
                         category={category}
                         onSelect={onSelect}
+                        setIsOpen={setIsOpen}
                     >
                         <Trophy width={24} />
                     </Option>
@@ -122,6 +142,7 @@ export const Sidebar = () => {
                             pagename="마이페이지"
                             category={category}
                             onSelect={onSelect}
+                            setIsOpen={setIsOpen}
                         >
                             <User width={24} />
                         </Option>
@@ -130,6 +151,7 @@ export const Sidebar = () => {
                             pagename="설정"
                             category={category}
                             onSelect={onSelect}
+                            setIsOpen={setIsOpen}
                         >
                             <Setting width={24} />
                         </Option>
@@ -137,7 +159,13 @@ export const Sidebar = () => {
                     </S.Menu>
                 )}
             </S.Bar>
+            <S.Dehaze onClick={()=>{
+                setIsOpen(true);
+                console.log(isOpen);
+            }}>
+                <Dehaze width={28} height={28} />
+            </S.Dehaze>
             {showPopUp ? <WritePopUp setShowPopUp={setShowPopUp} /> : null}
-        </>
+        </S.Container>
     );
 };

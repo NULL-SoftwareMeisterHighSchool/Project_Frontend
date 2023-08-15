@@ -13,7 +13,7 @@ import { getBlog } from "@apis/article";
 import { useState, useEffect } from "react";
 import * as S from "./style";
 import TitlePath from "@components/common/TitlePath";
-import useDate from "@hooks/useDate";
+import UseDate from "@hooks/useDate";
 import { BLOGTYPE } from "../../types/blog";
 import { useRecoilValue } from "recoil";
 import { profileIdAtom, profileNameAtom } from "@atoms/profile";
@@ -25,6 +25,7 @@ type boardDataProps = {
 };
 
 const Main = () => {
+    const [button, setButton] = useState(false);
     const myId = useRecoilValue(profileIdAtom);
     const myName = useRecoilValue(profileNameAtom);
     const navigate = useNavigate();
@@ -108,6 +109,14 @@ const Main = () => {
         }
     };
 
+    window.onresize = () => {
+        if(window.innerWidth < 500){
+            setButton(false);
+        }else{
+            setButton(true);
+        }
+    }
+    
     return (
         <>
             <TitlePath title="메인" path="Menu > 메인" primaryBase />
@@ -137,7 +146,7 @@ const Main = () => {
                             </>
                         ) : (
                             <S.ScoreTitleLogin onClick={()=>navigate('/login')}>
-                                로그인 후 이용가능합니다.
+                                로그인
                             </S.ScoreTitleLogin>
                         )}
                     </S.CircularText>
@@ -170,7 +179,7 @@ const Main = () => {
                     <Banner
                         title="인기 게시글"
                         subtitle="인기 게시글을 만나보세요"
-                        buttonValue="게시글 더보기"
+                        buttonValue={button ? "게시물 더보기" : "더보기"}
                         to="/blog"
                     />
                     <S.Board>
@@ -180,7 +189,7 @@ const Main = () => {
                                 id={post.id}
                                 title={post.title}
                                 name={post.author.name}
-                                date={useDate(post.createdAt).date}
+                                date={UseDate(post.createdAt).date}
                                 to={"/blogdetail/" + post.id}
                             />
                         ))}
@@ -190,7 +199,7 @@ const Main = () => {
                     <Banner
                         title="기술 블로그"
                         subtitle="전공 지식을 습득해 보세요"
-                        buttonValue="기술 더보기"
+                        buttonValue={button ? "기술 더보기" : "더보기"}
                         to="/skill"
                     />
                     <S.Board>
@@ -200,7 +209,7 @@ const Main = () => {
                                 id={post.id}
                                 title={post.title}
                                 name={post.author.name}
-                                date={useDate(post.createdAt).date}
+                                date={UseDate(post.createdAt).date}
                                 to={"/blogdetail/" + post.id}
                             />
                         ))}

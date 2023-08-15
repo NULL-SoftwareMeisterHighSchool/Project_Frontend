@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import Post from "@components/common/Post";
-import SearchFilter from "@components/pages/SkillBlog/SearchFilter";
+import SearchFilter from "@components/common/SearchFilter";
 import { LeftArrow } from "@assets/images/icon/LeftArrow";
 import { RightArrow } from "@assets/images/icon/RightArrow";
 import { color } from "@styles/theme.style";
 import { getBlog } from "@apis/article";
 import Pagination from "react-js-pagination";
-import useDate from "@hooks/useDate";
 import TitlePath from "@components/common/TitlePath";
 import { BLOGTYPE } from "../../types/blog";
 import UseDate from "@hooks/useDate";
 import { alertWarning } from "@utils/toastify";
+
 
 type blogDataProps = {
     articles: BLOGTYPE[];
