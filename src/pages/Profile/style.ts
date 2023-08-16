@@ -145,7 +145,7 @@ export const BlogContainer = styled.div`
     align-items: flex-start;
     gap: 20px;
     width: 100%;
-    overflow-x: scroll;
+    overflow-x: auto;
 `;
 
 export const Post = styled.div`
