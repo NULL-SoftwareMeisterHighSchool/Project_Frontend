@@ -21,6 +21,7 @@ import UseDate from "@hooks/useDate";
 const Mypage = () => {
     const navigate = useNavigate();
     const [updateProfileOpen, setUpdateProfileOpen] = useState(false);
+    const [portfolio, setPortfolio] = useState(false);
     const [myId, setMyId] = useRecoilState(profileIdAtom);
     const setMyName = useSetRecoilState(profileNameAtom);
     const { id } = useParams();
@@ -64,6 +65,11 @@ const Mypage = () => {
     const { refetch } = useQuery("getUser", () => getUser(id), {
         onSuccess: (res) => {
             setUserData(res.data);
+            if(userData.portfolioURL.indexOf("http") === -1){
+                setPortfolio(false);
+            }else{
+                setPortfolio(true);
+            }
         },
         onError: () => {
             alertError("Error");
@@ -118,7 +124,7 @@ const Mypage = () => {
                                 <S.UserContectTitle>
                                     portfolio
                                 </S.UserContectTitle>
-                                <S.UserLink to={userData.portfolioURL}>
+                                <S.UserLink to={portfolio ? userData.portfolioURL : "https:" + userData.portfolioURL}>
                                     <S.UserContect>
                                         {userData.portfolioURL}
                                     </S.UserContect>
