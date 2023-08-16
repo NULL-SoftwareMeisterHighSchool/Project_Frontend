@@ -3,7 +3,7 @@ import { color } from "@styles/theme.style";
 import { useParams } from "react-router-dom";
 import { Favorite } from "@assets/images/icon/Favorite";
 import { ChatBubble } from "@assets/images/icon/ChatBubble";
-import { Share } from "@assets/images/icon/Share";
+// import { Share } from "@assets/images/icon/Share";
 import { Eye } from "@assets/images/icon/Eye";
 import { Edit } from "@assets/images/icon/Edit";
 import { Delete } from "@assets/images/icon/Delete";
@@ -163,9 +163,9 @@ const BoardDetail = () => {
                                 <Eye fill={color.grayDark1} width="24px" />
                                 <S.IconText>{data.views}</S.IconText>
                             </S.IconInfo>
-                            <S.IconPointer onClick={() => setShowPopUp(true)}>
+                            {/* <S.IconPointer onClick={() => setShowPopUp(true)}>
                                 <Share fill={color.grayDark1} width="24px" />
-                            </S.IconPointer>
+                            </S.IconPointer> */}
                             {data.isAuthor ? (
                                 <S.MyIcon>
                                     <S.UpdateIcon to={"/updateblog/" + id}>
