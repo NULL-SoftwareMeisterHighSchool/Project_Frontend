@@ -164,7 +164,7 @@ const Mypage = () => {
                                 titleImg={
                                     data.thumbnail === ""
                                         ? SkillBlogDefaultImg
-                                        : ""
+                                        : data.thumbnail
                                 }
                                 date={UseDate(data.createdAt).date}
                                 to={"/blogdetail/" + data.id}
