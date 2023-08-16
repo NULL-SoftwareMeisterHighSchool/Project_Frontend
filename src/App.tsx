@@ -32,7 +32,6 @@ const App = () => {
             <Route path="/write" element={<WriteBoard />} />
             <Route path="/updateblog/:id" element={<UpdateBoard />} />
             <Route path="/enrollsign" element={<EnRolledSignup />} />
-            <Route path="/enrollsign" element={<EnRolledSignup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/pwchange" element={<Password />} />
             <Route path="/개인정보처리방침" element={<PersonInfo />} />
