@@ -15,7 +15,7 @@ import UserIcon from "@components/common/UserIcon";
 import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
 import { useNavigate, useParams } from "react-router-dom";
 import { USERDATATYPE } from "../../types/profile";
-import { alertSuccess } from "@utils/toastify";
+import { alertError, alertSuccess } from "@utils/toastify";
 import UseDate from "@hooks/useDate";
 
 const Mypage = () => {
@@ -66,11 +66,11 @@ const Mypage = () => {
             setUserData(res.data);
         },
         onError: () => {
-            console.log("Error");
+            alertError("Error");
         },
         enabled: false,
     });
-    
+
     useEffect(() => {
         refetch();
     }, [refetch]);
@@ -78,7 +78,11 @@ const Mypage = () => {
     return (
         <>
             <TitlePath
-                title={String(myId) === id ? "마이페이지" : `${userData.name} 페이지`}
+                title={
+                    String(myId) === id
+                        ? "마이페이지"
+                        : `${userData.name} 페이지`
+                }
                 path="Menu > 프로필"
             />
             <UpdateProfile
@@ -100,9 +104,11 @@ const Mypage = () => {
                             <S.UserIntro>
                                 <S.UserContectInfo>
                                     <S.UserName>{userData.name}</S.UserName>
-                                    <S.UserContect>
-                                        {userData.email}
-                                    </S.UserContect>
+                                    <S.UserLink to={"mailto:" + userData.email}>
+                                        <S.UserContect>
+                                            {userData.email}
+                                        </S.UserContect>
+                                    </S.UserLink>
                                 </S.UserContectInfo>
                                 <S.UserDescript>{userData.bio}</S.UserDescript>
                             </S.UserIntro>
@@ -112,15 +118,24 @@ const Mypage = () => {
                                 <S.UserContectTitle>
                                     portfolio
                                 </S.UserContectTitle>
-                                <S.UserContect>
-                                    {userData.portfolioURL}
-                                </S.UserContect>
+                                <S.UserLink to={userData.portfolioURL}>
+                                    <S.UserContect>
+                                        {userData.portfolioURL}
+                                    </S.UserContect>
+                                </S.UserLink>
                             </S.UserContectInfo>
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Github</S.UserContectTitle>
-                                <S.UserContect>
-                                    {userData.githubID}
-                                </S.UserContect>
+                                <S.UserLink
+                                    to={
+                                        "https://github.com/" +
+                                        userData.githubID
+                                    }
+                                >
+                                    <S.UserContect>
+                                        {userData.githubID}
+                                    </S.UserContect>
+                                </S.UserLink>
                             </S.UserContectInfo>
                         </S.UserContectSection>
                     </S.UserBox>
