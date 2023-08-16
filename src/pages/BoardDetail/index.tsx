@@ -47,14 +47,14 @@ const BoardDetail = () => {
         comments: [],
     });
 
-    const { mutateAsync: deleteBlogMutate } = useMutation(deleteBlog,{
-        onSuccess: ()=>{
+    const { mutateAsync: deleteBlogMutate } = useMutation(deleteBlog, {
+        onSuccess: () => {
             alertSuccess("게시물이 삭제되었습니다.");
             navigate("/");
         },
-        onError: ()=>{
+        onError: () => {
             alertError("게시물 삭제에 실패했습니다.");
-        }
+        },
     });
 
     const { refetch } = useQuery("getBlogDetail", () => getboardDetail(id), {
@@ -80,6 +80,9 @@ const BoardDetail = () => {
     useEffect(() => {
         refetch();
         setBlogId(String(id));
+        if(window.location.origin === "https://null-somein.kro.kr"){
+            navigate(window.location.pathname)
+        }
     }, []);
 
     return (
