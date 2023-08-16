@@ -125,6 +125,7 @@ export const UserLink = styled(Link)`
 
 export const Stack = styled.div`
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: 12px;
 `;
