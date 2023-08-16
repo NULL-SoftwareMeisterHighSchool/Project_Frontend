@@ -118,7 +118,9 @@ const BoardDetail = () => {
                 <S.Post>
                     <S.Thumbnail>
                         <S.PostTitle>{data.title}</S.PostTitle>
-                        <S.Profile>
+                        <S.Profile onClick={()=>{
+                            navigate("/profile/"+data.author.id);
+                        }}>
                             <UserIcon backWidth="48px" iconWidth={26} />
                             <S.ProfileInfo>
                                 <S.Name>{data.author.name}</S.Name>
