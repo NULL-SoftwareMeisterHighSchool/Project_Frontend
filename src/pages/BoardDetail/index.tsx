@@ -80,9 +80,6 @@ const BoardDetail = () => {
     useEffect(() => {
         refetch();
         setBlogId(String(id));
-        if(window.location.origin === "https://null-somein.kro.kr"){
-            navigate(window.location.pathname)
-        }
     }, []);
 
     return (
