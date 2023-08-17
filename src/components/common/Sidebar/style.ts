@@ -85,6 +85,7 @@ export const Write = styled.button`
     &:hover {
         background-color: ${color.grayLight1};
     }
+    cursor: pointer;
 `;
 export const LoginBtn = styled.div`
     display: flex;
