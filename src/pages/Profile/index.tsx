@@ -65,9 +65,9 @@ const Mypage = () => {
     const { refetch } = useQuery("getUser", () => getUser(id), {
         onSuccess: (res) => {
             setUserData(res.data);
-            if(userData.portfolioURL.indexOf("http") === -1){
+            if (userData.portfolioURL.indexOf("http") === -1) {
                 setPortfolio(false);
-            }else{
+            } else {
                 setPortfolio(true);
             }
         },
@@ -81,6 +81,9 @@ const Mypage = () => {
         refetch();
     }, [refetch]);
 
+    useEffect(() => {
+        refetch();
+    }, [id]);
     return (
         <>
             <TitlePath
@@ -124,7 +127,7 @@ const Mypage = () => {
                                 <S.UserContectTitle>
                                     portfolio
                                 </S.UserContectTitle>
-                                <S.UserLink to={portfolio ? userData.portfolioURL : "https:" + userData.portfolioURL}>
+                                <S.UserLink to={userData.portfolioURL} target="_blank">
                                     <S.UserContect>
                                         {userData.portfolioURL}
                                     </S.UserContect>
