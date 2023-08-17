@@ -59,7 +59,6 @@ instance.interceptors.response.use(
                     }
                 } else {
                     // refreshToken이 없는 경우
-                    alertInfo("here");
                     delCookie("accessToken", { path: "/" });
                     delCookie("refreshToken", { path: "/" });
                     throw error;
