@@ -9,6 +9,7 @@ export const Input = styled.input<{ state: InputStateType }>`
     border-radius: 8px;
     border: none;
     font-size: 16px;
+    cursor: text;
 
     ${({ state }) => state && getinputStyle[state]}
 `;  
