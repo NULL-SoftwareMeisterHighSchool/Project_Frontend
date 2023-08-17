@@ -13,22 +13,24 @@ import { profileIdAtom, profileNameAtom } from "@atoms/profile";
 import { getUser } from "@apis/users";
 import UserIcon from "@components/common/UserIcon";
 import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { USERDATATYPE } from "../../types/profile";
-import { alertSuccess } from "@utils/toastify";
+import { alertError, alertInfo, alertSuccess } from "@utils/toastify";
 import UseDate from "@hooks/useDate";
 
 const Mypage = () => {
+    const { search } = useLocation();
     const navigate = useNavigate();
     const [updateProfileOpen, setUpdateProfileOpen] = useState(false);
+    const [portfolio, setPortfolio] = useState(false);
     const [myId, setMyId] = useRecoilState(profileIdAtom);
+    const id = search.split(/[=,&]/)[1];
     const setMyName = useSetRecoilState(profileNameAtom);
-    const { id } = useParams();
     const [userData, setUserData] = useState<USERDATATYPE>({
         name: "",
         email: "",
         bio: "",
-        githubURL: "",
+        githubID: "",
         portfolioURL: "",
         stacks: [],
         articles: {
@@ -64,21 +66,33 @@ const Mypage = () => {
     const { refetch } = useQuery("getUser", () => getUser(id), {
         onSuccess: (res) => {
             setUserData(res.data);
+            if (userData.portfolioURL.indexOf("http") === -1) {
+                setPortfolio(false);
+            } else {
+                setPortfolio(true);
+            }
         },
         onError: () => {
-            console.log("Error");
+            alertError("Error");
         },
         enabled: false,
     });
-    
+
     useEffect(() => {
         refetch();
     }, [refetch]);
 
+    useEffect(() => {
+        refetch();
+    }, [id]);
     return (
         <>
             <TitlePath
-                title={`${String(myId) === id ? "마이" : userData.name} 페이지`}
+                title={
+                    String(myId) === id
+                        ? "마이페이지"
+                        : `${userData.name} 페이지`
+                }
                 path="Menu > 프로필"
             />
             <UpdateProfile
@@ -87,22 +101,24 @@ const Mypage = () => {
                 setVal={setUpdateProfileOpen}
                 userData={{
                     bio: userData.bio,
-                    githubURL: userData.githubURL,
+                    githubID: userData.githubID,
                     portfolioURL: userData.portfolioURL,
                     stacks: userData.stacks,
                 }}
             />
             <S.MypageContainer>
                 <S.User>
-                    <div>
+                    <S.UserBox>
                         <S.UserSection>
                             <UserIcon backWidth="80px" iconWidth={44} />
                             <S.UserIntro>
                                 <S.UserContectInfo>
                                     <S.UserName>{userData.name}</S.UserName>
-                                    <S.UserContect>
-                                        {userData.email}
-                                    </S.UserContect>
+                                    <S.UserLink to={"mailto:" + userData.email}>
+                                        <S.UserContect>
+                                            {userData.email}
+                                        </S.UserContect>
+                                    </S.UserLink>
                                 </S.UserContectInfo>
                                 <S.UserDescript>{userData.bio}</S.UserDescript>
                             </S.UserIntro>
@@ -112,18 +128,30 @@ const Mypage = () => {
                                 <S.UserContectTitle>
                                     portfolio
                                 </S.UserContectTitle>
-                                <S.UserContect>
-                                    {userData.portfolioURL}
-                                </S.UserContect>
+                                <S.UserLink
+                                    to={userData.portfolioURL}
+                                    target="_blank"
+                                >
+                                    <S.UserContect>
+                                        {userData.portfolioURL}
+                                    </S.UserContect>
+                                </S.UserLink>
                             </S.UserContectInfo>
                             <S.UserContectInfo>
                                 <S.UserContectTitle>Github</S.UserContectTitle>
-                                <S.UserContect>
-                                    {userData.githubURL}
-                                </S.UserContect>
+                                <S.UserLink
+                                    to={
+                                        "https://github.com/" +
+                                        userData.githubID
+                                    }
+                                >
+                                    <S.UserContect>
+                                        {userData.githubID}
+                                    </S.UserContect>
+                                </S.UserLink>
                             </S.UserContectInfo>
                         </S.UserContectSection>
-                    </div>
+                    </S.UserBox>
                     {Authority()}
                 </S.User>
                 <S.Stack>
@@ -143,10 +171,10 @@ const Mypage = () => {
                                 titleImg={
                                     data.thumbnail === ""
                                         ? SkillBlogDefaultImg
-                                        : ""
+                                        : data.thumbnail
                                 }
                                 date={UseDate(data.createdAt).date}
-                                to={"/blogdetail/" + data.id}
+                                to={"/blogdetail?id=" + data.id}
                                 likes={data.likes}
                                 views={data.views}
                             />
@@ -162,7 +190,7 @@ const Mypage = () => {
                                 title={post.title}
                                 name={post.author.name}
                                 date={UseDate(post.createdAt).date}
-                                to={"/blogdetail/" + post.id}
+                                to={"/blogdetail?id=" + post.id}
                             />
                         ))}
                     </S.PostContainer>

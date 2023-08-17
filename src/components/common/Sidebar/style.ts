@@ -3,7 +3,12 @@ import styled from "styled-components";
 import { Body, Body2, BodyStrong } from "@styles/text.style";
 import { color } from "@styles/theme.style";
 
+export const Container = styled.div`
+    position: relative;
+`;
+
 export const Bar = styled.nav`
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -16,6 +21,24 @@ export const Bar = styled.nav`
     top: 0px;
 
     background: ${color.grayLight2};
+    transition: 0.5s ease;
+    @media (max-width: 800px) {
+        position: fixed;
+        left: -300px;
+    }
+
+    &.open {
+        left: 0;
+    }
+`;
+
+export const Dehaze = styled.div`
+    @media (min-width: 801px) {
+        display: none;
+    }
+    position: absolute;
+    top: 20px;
+    left: 20px;
 `;
 
 export const User = styled(Body2)`
@@ -62,6 +85,7 @@ export const Write = styled.button`
     &:hover {
         background-color: ${color.grayLight1};
     }
+    cursor: pointer;
 `;
 export const LoginBtn = styled.div`
     display: flex;

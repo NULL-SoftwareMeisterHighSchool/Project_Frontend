@@ -11,7 +11,6 @@ export const Banner = styled.div`
 	gap: 20px;
 
 	width: 100%;
-	min-width: max-content;
 	height: 136px;
 
 	background: ${color.grayLight2};
@@ -24,8 +23,6 @@ export const BannerText = styled.div`
 	align-items: flex-start;
 	padding: 0px;
 	gap: 4px;
-	width: 192px;
-	height: 56px;
 `;
 
 export const BannerTitle = styled(SubTitle)`
@@ -44,4 +41,7 @@ export const BannerSubtitle = styled(BodyLarge)`
 	line-height: 24px;
 	
 	color: ${color.black};
+	@media (max-width: 450px) {
+		display: none;
+	}
 `;

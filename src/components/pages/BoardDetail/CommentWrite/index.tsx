@@ -5,6 +5,8 @@ import { useMutation } from 'react-query';
 import { postComment } from '@apis/article';
 import { useState } from "react";
 import { alertError, alertSuccess } from "@utils/toastify";
+import { useRecoilValue } from "recoil";
+import { profileIdAtom } from "@atoms/profile"
 
 type Props = {
     id: string | undefined;
@@ -16,6 +18,7 @@ const CommentWrite = ({
     func
 }:Props) => {
     const [ body, setBody ] = useState('');
+    const myId = useRecoilValue(profileIdAtom);
     const { mutateAsync: commentMutate } = useMutation(postComment, {
         onSuccess: () => {
           console.log("Success");
@@ -35,7 +38,7 @@ const CommentWrite = ({
                     <Input 
                     title="댓글 작성" 
                     width="100%" 
-                    placeholder="댓글 내용을 입력해 주세요"
+                    placeholder={myId ? "댓글 내용을 입력해 주세요" : "로그인 후 작성할 수 있어요"}
                     onChange={(e)=>{setBody(e.target.value)}}
                     value={body}
                     onKeyDown={(e)=>{
@@ -43,7 +46,8 @@ const CommentWrite = ({
                             e.preventDefault();
                             commentMutate({ id, body });
                         }
-                    }}/>
+                    }}
+                    readOnly={myId ? false : true}/>
                 </div>
                 <Button 
                 value="댓글 작성"

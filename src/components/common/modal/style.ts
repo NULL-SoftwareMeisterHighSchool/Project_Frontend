@@ -6,13 +6,13 @@ export const BackGround = styled.div`
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0,0,0,0.24);
+    background-color: rgba(0, 0, 0, 0.24);
     backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 100;
-`
+`;
 export const Container = styled.div`
     background-color: white;
     width: 42%;
@@ -22,4 +22,8 @@ export const Container = styled.div`
     display: flex;
     gap: 24px;
     flex-direction: column;
-`
+    @media screen and (max-width: 450px) {
+        width: 90%;
+        min-width: 200px;
+    }
+`;

@@ -1,11 +1,11 @@
 import UserIcon from "@components/common/UserIcon";
-import { More } from "@assets/images/icon/More";
+//import { More } from "@assets/images/icon/More";
 import { Delete } from "@assets/images/icon/Delete";
 import { CommentStateType } from "./comment.type";
 import { deleteComment } from "@apis/article";
 import { useMutation } from "react-query";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { profileIdAtom } from "@atoms/profile";
 
@@ -18,10 +18,11 @@ export interface ComentType {
   authorId: number; 
   commentID: number;
   username: string;
-  content: String;
+  content: string;
   func: ()=>void;
-  date: String;
-  time: String;
+  date: string;
+  time: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   to: any;
   state?: CommentStateType;
 }
@@ -37,7 +38,9 @@ const Comment = ({
   to,
   state = "COMMENT",
 }: ComentType) => {
-  const { id } = useParams();
+  const { search } = useLocation();
+  const id = search.split(/[=,&]/)[1];
+const navigate = useNavigate();
   const myId = useRecoilValue(profileIdAtom);
   const [commentOpen, setCommentOpen] = useState<boolean>(false);
   const [modal, setModal] = useState<boolean>(false);
@@ -79,14 +82,14 @@ const Comment = ({
             backWidth="40px"
             iconWidth={22}
             onClick={() => {
-              window.location.replace(to);
+              navigate(to);
             }}
           />
           <S.Row>
             <S.Column>
               <S.CommentName
                 onClick={() => {
-                  window.location.replace(to);
+                  navigate(to);
                 }}
               >
                 {username}

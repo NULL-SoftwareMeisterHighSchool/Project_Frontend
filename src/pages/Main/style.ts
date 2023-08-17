@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { TitleLarge, BodyLarge, BodyStrong, Body2, SubTitle } from '@styles/text.style'
+import { BodyLarge, SubTitle } from '@styles/text.style'
 import { color } from '@styles/theme.style';
 
 export const Github = styled.div`
@@ -88,6 +87,12 @@ export const Comprehensive = styled.div`
 	@media screen and (max-width: 1154px) {
         display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
+		gap: 40px 80px;
+    }
+	
+	@media screen and (max-width: 500px) {
+        display: grid;
+		grid-template-columns: 1fr 1fr;
 		gap: 40px 80px;
     }
 `;

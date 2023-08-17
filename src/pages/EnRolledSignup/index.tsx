@@ -127,7 +127,7 @@ const EnRolledSignup = () => {
     const onClickSignUp = () => {
         if (userData.name === "") {
             alertWarning("이름를 입력해주세요.");
-        } else if (userData.password === "") {
+        } else if (userData.userID === "") {
             alertWarning("아이디를 입력해주세요.");
         } else if (userData.password === "") {
             alertWarning("비밀번호를 입력해주세요.");
@@ -189,7 +189,7 @@ const EnRolledSignup = () => {
                             type="number"
                             title="입학연도"
                             width="100%"
-                            placeholder="재학중이거나 졸업한 학교를 입력해 주세요"
+                            placeholder="입학 연도를 입력해 주세요"
                             name="admissionYear"
                             onChange={onChange}
                             min={2015}

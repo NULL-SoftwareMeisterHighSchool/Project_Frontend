@@ -105,12 +105,6 @@ const GlobalStyle = createGlobalStyle`
         line-height: 36px;
         color: ${color.primaryBase};
      }
-    
-    @media screen and (max-width: 1000px){
-        *{
-            display: none;
-        }
-    }
 `;
 
 export default GlobalStyle;
