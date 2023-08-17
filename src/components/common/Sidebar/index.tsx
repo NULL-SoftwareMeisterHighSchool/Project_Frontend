@@ -139,7 +139,7 @@ export const Sidebar = () => {
                             <Alarm width={24} />
                         </Option> */}
                         <Option
-                            to={"/profile/"+userData.id}
+                            to={"/profile?id="+userData.id}
                             pagename="마이페이지"
                             category={category}
                             onSelect={onSelect}

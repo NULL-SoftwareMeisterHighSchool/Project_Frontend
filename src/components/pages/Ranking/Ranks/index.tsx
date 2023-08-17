@@ -23,7 +23,7 @@ const Ranks = ({
 }: Props) => {
     const navigate = useNavigate();
     return (
-        <S.Container onClick={()=> navigate('/profile/'+id)}>
+        <S.Container onClick={()=> navigate('/profile?id='+id)}>
             <S.Rank rank={rank}>
                 <Body2>{rank}</Body2>
             </S.Rank>

@@ -119,7 +119,7 @@ const BoardDetail = () => {
                     <S.Thumbnail>
                         <S.PostTitle>{data.title}</S.PostTitle>
                         <S.Profile onClick={()=>{
-                            navigate("/profile/"+data.author.id);
+                            navigate("/profile?id="+data.author.id);
                         }}>
                             <UserIcon backWidth="48px" iconWidth={26} />
                             <S.ProfileInfo>
@@ -210,7 +210,7 @@ const BoardDetail = () => {
                                 commentID={post.commentID}
                                 username={post.author.name}
                                 content={post.content}
-                                to={"/profile/" + post.author.id}
+                                to={"/profile?id=" + post.author.id}
                                 date={UseDate(post.createdAt).date}
                                 time={UseDate(post.createdAt).time}
                                 func={refetch}
