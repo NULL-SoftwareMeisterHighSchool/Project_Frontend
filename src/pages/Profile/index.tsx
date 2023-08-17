@@ -174,7 +174,7 @@ const Mypage = () => {
                                         : data.thumbnail
                                 }
                                 date={UseDate(data.createdAt).date}
-                                to={"/blogdetail/" + data.id}
+                                to={"/blogdetail?id=" + data.id}
                                 likes={data.likes}
                                 views={data.views}
                             />
@@ -190,7 +190,7 @@ const Mypage = () => {
                                 title={post.title}
                                 name={post.author.name}
                                 date={UseDate(post.createdAt).date}
-                                to={"/blogdetail/" + post.id}
+                                to={"/blogdetail?id=" + post.id}
                             />
                         ))}
                     </S.PostContainer>

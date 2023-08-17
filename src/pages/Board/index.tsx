@@ -92,7 +92,7 @@ const Board = () => {
                             name={post.author.name}
                             title={post.title}
                             date={UseDate(post.createdAt).date}
-                            to={"/blogdetail/" + post.id}
+                            to={"/blogdetail?id=" + post.id}
                         />
                     ))}
                 </S.Content>
