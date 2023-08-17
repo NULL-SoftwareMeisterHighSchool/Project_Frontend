@@ -33,7 +33,9 @@ export const Describe = styled(Body2)`
 `;
 
 export const DropdownListBox = styled.div<{ isOpen: boolean }>`
+
     display: ${ ({ isOpen }) => isOpen ? "block" : "none" };
+    z-index: 10;
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
