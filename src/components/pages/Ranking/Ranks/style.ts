@@ -2,7 +2,8 @@ import UserIcon from "@components/common/UserIcon";
 import { color } from "@styles/theme.style";
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div`    
+    cursor: pointer;
     display: grid;
     grid-template-columns: 0.7fr 2fr 2fr 1.4fr 1fr 0.5fr;
     padding: 0px 12px;
