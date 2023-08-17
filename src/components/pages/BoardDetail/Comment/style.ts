@@ -102,6 +102,7 @@ export const CommentName = styled(BodyStrong)`
 export const CommentContent = styled(Body2)`
     line-height: 17px;
     color: ${color.black};
+    word-break: break-all;
 `;
 
 export const CommentInfo = styled.div`
