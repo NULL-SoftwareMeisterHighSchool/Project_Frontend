@@ -1,7 +1,7 @@
-import { InputStateType } from './input.type';
+import { InputStateType } from "./input.type";
 import styled, { css, FlattenSimpleInterpolation } from "styled-components";
-import { BodyLarge, BodyStrong } from '@styles/text.style';
-import {color} from '@styles/theme.style';
+import { BodyLarge, BodyStrong } from "@styles/text.style";
+import { color } from "@styles/theme.style";
 
 export const Input = styled.input<{ state: InputStateType }>`
     height: 48px;
@@ -9,9 +9,8 @@ export const Input = styled.input<{ state: InputStateType }>`
     border-radius: 8px;
     border: none;
     font-size: 16px;
-
     ${({ state }) => state && getinputStyle[state]}
-`;  
+`;
 
 export const Titlebox = styled.div`
     display: flex;
@@ -25,14 +24,14 @@ export const Titlebox = styled.div`
 `;
 
 export const TitleInfo = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 4px; 
+    display: flex;
+    align-items: center;
+    gap: 4px;
 `;
 
 export const Icon = styled.img`
-  width: 16px;
-  height: 16px;
+    width: 16px;
+    height: 16px;
 `;
 
 export const Title = styled(BodyLarge)`
@@ -45,23 +44,34 @@ export const TxtBtn = styled(BodyStrong)`
 
 const getinputStyle: Record<InputStateType, FlattenSimpleInterpolation> = {
     DEFAULT: css`
-      background-color: ${color.grayLight2};
-      &::placeholder{
-        color: ${color.grayBase};
-      }
+        background-color: ${color.grayLight2};
+        &::placeholder {
+            color: ${color.grayBase};
+        }
     `,
 
     CRITICAL: css`
-      background: #FFE6D8;
-      &::placeholder{
-        color: #DB2C36;
-      }
+        background: #ffe6d8;
+        &::placeholder {
+            color: #db2c36;
+        }
     `,
-  
+
     SUCCESS: css`
-      background-color: ${color.grayLight2};
-      &::placeholder{
-        color: ${color.grayBase};
-      }
+        background-color: ${color.grayLight2};
+        &::placeholder {
+            color: ${color.grayBase};
+        }
     `,
 };
+
+export const InputContianer = styled.div`
+    position: relative;
+`;
+
+export const IconContainer = styled.div`
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    right: 5px;
+`;
