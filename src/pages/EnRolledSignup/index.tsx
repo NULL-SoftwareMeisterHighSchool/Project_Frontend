@@ -189,7 +189,7 @@ const EnRolledSignup = () => {
                             type="number"
                             title="입학연도"
                             width="100%"
-                            placeholder="재학중이거나 졸업한 학교를 입력해 주세요"
+                            placeholder="입학 연도를 입력해 주세요"
                             name="admissionYear"
                             onChange={onChange}
                             min={2015}

@@ -43,7 +43,7 @@ const SearchFilter = ({
                 value={searchVal}
                 onChange={(e) => onChangeSearch(e)}
                 placeholder="Placeholder"
-                width="800px"
+                width="80%"
             />
             <Dropdown
                 val={newFilter}

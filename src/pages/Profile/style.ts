@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { color } from "@styles/theme.style";
 import { Title ,Body2, BodyLarge } from "@styles/text.style";
+import { Link } from "react-router-dom";
 
 export const MypageContainer = styled.div`
     display: flex;
@@ -114,8 +115,17 @@ export const UserContect = styled(Body2)`
     color: ${color.grayDark1};
 `;
 
+export const UserLink = styled(Link)`
+    color: ${color.grayDark1};
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+    }
+`
+
 export const Stack = styled.div`
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: 12px;
 `;
@@ -136,7 +146,7 @@ export const BlogContainer = styled.div`
     align-items: flex-start;
     gap: 20px;
     width: 100%;
-    overflow-x: scroll;
+    overflow-x: auto;
 `;
 
 export const Post = styled.div`

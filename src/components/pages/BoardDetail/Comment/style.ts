@@ -41,7 +41,7 @@ export const Comment = styled.div<{ state: CommentStateType }>`
     padding: 20px;
     gap: 6px;
 
-    height: 100px;
+    height: fit-content;
     width: 100%;
 
     background: #f3f3f3;
@@ -68,7 +68,6 @@ export const CommentContents = styled.div`
     gap: 10px;
 
     width: 100%;
-    height: 40px;
     position: relative;
 `;
 
