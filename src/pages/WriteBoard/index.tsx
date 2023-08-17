@@ -6,28 +6,29 @@ import Toast from "@components/pages/WriteBoard/Toast";
 import { articleTypeAtom } from "@atoms/articleType";
 import { useRecoilValue } from "recoil";
 import { alertError, alertSuccess } from "@utils/toastify";
-import { profileIdAtom } from "@atoms/profile";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "@utils/cookies";
 
 const WriteBoard = () => {
     const [title, setTitle] = useState("");
     const type = useRecoilValue(articleTypeAtom);
     const [content, setContent] = useState("");
-    const[content2, setContent2] = useState("");
+    const[content2, ] = useState("");
+    const navigate = useNavigate();
+
     const { mutate: writeMutate } = useMutation(postWrite, {
         onSuccess: () => {
             alertSuccess("글 작성에 성공했습니다.");
-            window.location.href = "/";
+            navigate("/")
         },
         onError: () => {
             alertError("글 작성 실패했습니다.");
         },
     });
-    const myid = useRecoilValue(profileIdAtom);
-    const navigate = useNavigate();
+    const refreshCookie = getCookie("refreshToken")
 
     useEffect(() => {
-        if (!myid) {
+        if (!refreshCookie) {
             alertError("로그인 후 이용 가능합니다.");
             navigate("/login");
         }

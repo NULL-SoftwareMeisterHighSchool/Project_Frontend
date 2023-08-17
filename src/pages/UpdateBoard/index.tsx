@@ -5,20 +5,19 @@ import { getboardDetail, putWrite } from "@apis/article";
 import { alertError, alertSuccess } from "@utils/toastify";
 import Toast from "@components/pages/WriteBoard/Toast";
 import { useNavigate, useParams } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { profileIdAtom } from "@atoms/profile";
+import { getCookie } from "@utils/cookies";
 
 const UpdateBoard = () => {
     const { id } = useParams();
     const [title, setTitle] = useState("");
     const [articleType, setArticleType] = useState("GENERAL");
     const [content, setContent] = useState("");
-    const[content2, setContent2] = useState("");
-
+    const [content2, setContent2] = useState("");
+    const navigate = useNavigate();
     const { mutate: putwriteMutate } = useMutation(putWrite, {
         onSuccess: () => {
             alertSuccess("글 수정에 성공했습니다.");
-            window.location.href = "/";
+            navigate("/");
         },
         onError: () => {
             alertError("글 수정에 실패했습니다.");
@@ -36,20 +35,19 @@ const UpdateBoard = () => {
         },
         enabled: false,
     });
-    
+
     useEffect(() => {
         refetch();
     }, []);
 
-    const myid = useRecoilValue(profileIdAtom);
-    const navigate = useNavigate();
+    const refreshCookie = getCookie("refreshToken")
 
-    useEffect(()=>{
-        if (!myid) {
+    useEffect(() => {
+        if (!refreshCookie) {
             alertError("로그인 후 이용 가능합니다.");
             navigate("/login");
         }
-    },[])
+    }, []);
 
     return (
         <>
@@ -74,7 +72,7 @@ const UpdateBoard = () => {
                     setTitle(e.target.value)
                 }
             />
-            <Toast content={content} setContent2={setContent2}/>
+            <Toast content={content} setContent2={setContent2} />
         </>
     );
 };
