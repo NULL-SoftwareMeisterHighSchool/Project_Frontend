@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import Post from "@components/common/Post";
-import SearchFilter from "@components/pages/SkillBlog/SearchFilter";
+import SearchFilter from "@components/common/SearchFilter";
 import { LeftArrow } from "@assets/images/icon/LeftArrow";
 import { RightArrow } from "@assets/images/icon/RightArrow";
 import { color } from "@styles/theme.style";
@@ -10,6 +10,8 @@ import Pagination from "react-js-pagination";
 import TitlePath from "@components/common/TitlePath";
 import { BLOGTYPE } from "../../types/blog";
 import UseDate from "@hooks/useDate";
+import { alertWarning } from "@utils/toastify";
+
 
 type blogDataProps = {
     articles: BLOGTYPE[];
@@ -32,7 +34,7 @@ const Board = () => {
             query: searchInput,
         });
     };
-    
+
     /** blog 데이터 */
     const [blogData, setBlogData] = useState<blogDataProps>({
         articles: [],
@@ -42,23 +44,23 @@ const Board = () => {
     const [searchInput, setSearchInput] = useState<string>("");
     /** 필터 */
     const [filterData, setFilterData] = useState("최신순");
-    
+
     const [page, setPage] = useState(1);
-    
-    const handlePageChange = (page:number) => {
+
+    const handlePageChange = (page: number) => {
         setPage(page);
         //console.log(page);
     };
 
     /** 필터 변경시 데이터 받아오기 */
-    useEffect(()=>{
-            setPage(1);
-            getBlogData();
-    },[filterData]);
-
-    useEffect(()=>{
+    useEffect(() => {
+        setPage(1);
         getBlogData();
-    },[page]);
+    }, [filterData]);
+
+    useEffect(() => {
+        getBlogData();
+    }, [page]);
 
     return (
         <>
@@ -67,8 +69,15 @@ const Board = () => {
                 <SearchFilter
                     onKeyDown={(e: React.KeyboardEvent) => {
                         if (e.keyCode === 13) {
-                            setPage(1);
-                            getBlogData();
+                            if (
+                                searchInput.length === 1 ||
+                                searchInput.length === 2
+                            ) {
+                                alertWarning("2글자 이상 검색 가능합니다.");
+                            } else {
+                                setPage(1);
+                                getBlogData();
+                            }
                         }
                     }}
                     searchVal={searchInput}
@@ -83,7 +92,7 @@ const Board = () => {
                             name={post.author.name}
                             title={post.title}
                             date={UseDate(post.createdAt).date}
-                            to={"/blogdetail/"+post.id}
+                            to={"/blogdetail/" + post.id}
                         />
                     ))}
                 </S.Content>

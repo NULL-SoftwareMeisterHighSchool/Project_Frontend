@@ -118,7 +118,9 @@ const BoardDetail = () => {
                 <S.Post>
                     <S.Thumbnail>
                         <S.PostTitle>{data.title}</S.PostTitle>
-                        <S.Profile>
+                        <S.Profile onClick={()=>{
+                            navigate("/profile/"+data.author.id);
+                        }}>
                             <UserIcon backWidth="48px" iconWidth={26} />
                             <S.ProfileInfo>
                                 <S.Name>{data.author.name}</S.Name>
@@ -167,7 +169,7 @@ const BoardDetail = () => {
                                 <Share fill={color.grayDark1} width="24px" />
                             </S.IconPointer>
                             {data.isAuthor ? (
-                                <>
+                                <S.MyIcon>
                                     <S.UpdateIcon to={"/updateblog/" + id}>
                                         <Edit
                                             fill={color.primaryBase}
@@ -193,7 +195,7 @@ const BoardDetail = () => {
                                             게시글 삭제하기
                                         </S.UpdateText>
                                     </S.DeleteIcon>
-                                </>
+                                </S.MyIcon>
                             ) : (
                                 ""
                             )}

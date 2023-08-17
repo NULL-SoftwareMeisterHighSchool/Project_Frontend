@@ -1,5 +1,5 @@
 import * as S from "./style";
-import SearchFilter from "@components/pages/SkillBlog/SearchFilter";
+import SearchFilter from "@components/common/SearchFilter";
 import BlogPost from "@components/pages/SkillBlog/BlogPost";
 import { SkillBlogDefaultImg } from "@assets/images/allfiles";
 import TitlePath from "@components/common/TitlePath";
@@ -9,12 +9,13 @@ import UseDate from "@hooks/useDate";
 import { useInView } from "react-intersection-observer";
 import { BodyLarge2 } from "@styles/text.style";
 import { BLOGTYPE } from "../../types/blog";
+import { alertWarning } from "@utils/toastify";
 
 type skillDataProps = {
     articles: BLOGTYPE[];
     totalCount: number;
 };
-``
+``;
 
 const SkillBlog = () => {
     /** skill blog 데이터 */
@@ -88,7 +89,11 @@ const SkillBlog = () => {
                 <SearchFilter
                     onKeyDown={(e: React.KeyboardEvent) => {
                         if (e.keyCode === 13) {
-                            getSkillData(true);
+                            if (searchInput.length === 1 || searchInput.length === 2) {
+                                alertWarning("2글자 이상 검색 가능합니다.");
+                            } else {
+                                getSkillData(true);
+                            }
                         }
                     }}
                     searchVal={searchInput}
@@ -108,7 +113,11 @@ const SkillBlog = () => {
                                     ? SkillBlogDefaultImg
                                     : data.thumbnail
                             }
-                            date={UseDate(data.createdAt).date+" "+UseDate(data.createdAt).time}
+                            date={
+                                UseDate(data.createdAt).date +
+                                " " +
+                                UseDate(data.createdAt).time
+                            }
                             likes={data.likes}
                             views={data.views}
                         />
