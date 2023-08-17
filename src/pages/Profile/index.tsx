@@ -80,7 +80,7 @@ const Mypage = () => {
     useEffect(() => {
         refetch();
     }, [refetch]);
-    
+
     useEffect(() => {
         refetch();
     }, [id]);
@@ -127,7 +127,7 @@ const Mypage = () => {
                                 <S.UserContectTitle>
                                     portfolio
                                 </S.UserContectTitle>
-                                <S.UserLink to={userData.portfolioURL}>
+                                <S.UserLink to={userData.portfolioURL} target="_blank">
                                     <S.UserContect>
                                         {userData.portfolioURL}
                                     </S.UserContect>
