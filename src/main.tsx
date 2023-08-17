@@ -1,8 +1,7 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import GlobalStyle from "@styles/global.style";
-import { RouterProvider } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { CookiesProvider } from "react-cookie";
 import { RecoilRoot } from "recoil";
@@ -21,7 +20,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <CookiesProvider>
             <QueryClientProvider client={queryClient}>
                 <GlobalStyle />
-                <RouterProvider router={App} />
+                <BrowserRouter>
+                    <App/>
+                </BrowserRouter>
                 <ToastContainer limit={3} />
                 {/* <Analytics /> */}
             </QueryClientProvider>
