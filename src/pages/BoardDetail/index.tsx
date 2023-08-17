@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { color } from "@styles/theme.style";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Favorite } from "@assets/images/icon/Favorite";
 import { ChatBubble } from "@assets/images/icon/ChatBubble";
 import { Share } from "@assets/images/icon/Share";
@@ -26,7 +26,8 @@ const BoardDetail = () => {
     const View = React.lazy(
         () => import("../../components/pages/BoardDetail/Viewer")
     );
-    const { id } = useParams();
+    const { search } = useLocation();
+    const id = search.split(/[=,&]/)[1];
     const navigate = useNavigate();
     const setBlogId = useSetRecoilState(articleIdAtom);
     const [showPopUp, setShowPopUp] = useState<boolean>(false);
@@ -170,7 +171,7 @@ const BoardDetail = () => {
                             </S.IconPointer>
                             {data.isAuthor ? (
                                 <S.MyIcon>
-                                    <S.UpdateIcon to={"/updateblog/" + id}>
+                                    <S.UpdateIcon to={"/updateblog?=" + id}>
                                         <Edit
                                             fill={color.primaryBase}
                                             width="24px"

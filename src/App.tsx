@@ -23,13 +23,13 @@ const App = () => {
                 <Route path="/" element={<Main />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/ranking" element={<Ranking />} />
-                <Route path="/blogdetail/:id" element={<BoardDetail />} />
+                <Route path="/blogdetail" element={<BoardDetail />} />
                 <Route path="/blog" element={<Board />} />
                 <Route path="/setting" element={<Setting />} />
                 <Route path="/skill" element={<SkillBlog />} />
             </Route>
             <Route path="/write" element={<WriteBoard />} />
-            <Route path="/updateblog/:id" element={<UpdateBoard />} />
+            <Route path="/updateblog" element={<UpdateBoard />} />
             <Route path="/enrollsign" element={<EnRolledSignup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/pwchange" element={<Password />} />
