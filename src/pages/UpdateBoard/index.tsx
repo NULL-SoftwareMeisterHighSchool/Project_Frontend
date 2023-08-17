@@ -4,11 +4,12 @@ import * as S from "./style";
 import { getboardDetail, putWrite } from "@apis/article";
 import { alertError, alertSuccess } from "@utils/toastify";
 import Toast from "@components/pages/WriteBoard/Toast";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getCookie } from "@utils/cookies";
 
 const UpdateBoard = () => {
-    const { id } = useParams();
+    const { search } = useLocation();
+    const id = search.split(/[=,&]/)[1];
     const [title, setTitle] = useState("");
     const [articleType, setArticleType] = useState("GENERAL");
     const [content, setContent] = useState("");
