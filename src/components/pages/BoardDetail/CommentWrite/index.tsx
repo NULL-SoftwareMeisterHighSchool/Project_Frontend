@@ -42,6 +42,7 @@ const CommentWrite = ({
                     onChange={(e)=>{setBody(e.target.value)}}
                     value={body}
                     onKeyDown={(e)=>{
+                        if (e.keyCode === 229) return; 
                         if (e.key === "Enter" && !e.shiftKey && body.length > 0) {
                             e.preventDefault();
                             commentMutate({ id, body });
