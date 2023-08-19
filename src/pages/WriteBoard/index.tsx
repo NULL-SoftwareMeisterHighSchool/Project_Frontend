@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Button from "@components/common/Button";
 import { useMutation } from "react-query";
 import * as S from "./style";
 import { postWrite } from "@apis/article";
@@ -40,13 +41,21 @@ const WriteBoard = () => {
                 <S.STitle>
                     {type == "GENERAL" ? "게시판 글쓰기" : "기술 블로그 글쓰기"}
                 </S.STitle>
-                <S.Post
-                    onClick={() => {
-                        writeMutate({ title, type, content });
-                    }}
-                >
-                    글 게시하기
-                </S.Post>
+                <S.Button>
+                    <Button
+                        state="GRAY"
+                        value="임시저장"
+                        onClick={() => {
+                            writeMutate({ title, type, content });
+                        }}
+                    />
+                    <Button
+                        value="글 게시하기"
+                        onClick={() => {
+                            writeMutate({ title, type, content });
+                        }}
+                    />
+                </S.Button>
             </S.Header>
             <S.TitleInput
                 placeholder="제목을 입력해주세요"
