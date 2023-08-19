@@ -49,7 +49,6 @@ export const User = styled(Body2)`
     gap: 10px;
 
     width: 200px;
-    height: 56px;
 
     border-radius: 8px;
 
@@ -115,7 +114,6 @@ export const Menu = styled.div`
     padding: 0px;
 
     width: 200px;
-    height: 202px;
 
     /* Inside auto layout */
 
