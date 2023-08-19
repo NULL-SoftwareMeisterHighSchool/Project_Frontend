@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import AppLayout from "@layouts/AppLayout";
 import Board from "@pages/Board";
+import Introduce from "@pages/Introduce";
 import BoardDetail from "@pages/BoardDetail";
 import EnRolledSignup from "@pages/EnRolledSignup";
 import Error from "@pages/Error";
@@ -25,6 +26,7 @@ const App = () => {
                 <Route path="/ranking" element={<Ranking />} />
                 <Route path="/blogdetail" element={<BoardDetail />} />
                 <Route path="/blog" element={<Board />} />
+                <Route path="/introduce" element={<Introduce />} />
                 <Route path="/setting" element={<Setting />} />
                 <Route path="/skill" element={<SkillBlog />} />
             </Route>

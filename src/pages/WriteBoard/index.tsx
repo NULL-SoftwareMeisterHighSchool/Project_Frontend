@@ -38,7 +38,7 @@ const WriteBoard = () => {
         <>
             <S.Header>
                 <S.STitle>
-                    {type == "GENERAL" ? "게시판 글쓰기" : "기술 블로그 글쓰기"}
+                    {type == "GENERAL" ? "게시판 글쓰기" : type == "TECH" ? "기술 블로그 글쓰기" : "자기소개 글쓰기"}
                 </S.STitle>
                 <S.Post
                     onClick={() => {
