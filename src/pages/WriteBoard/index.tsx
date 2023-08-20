@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Button from "@components/common/Button";
 import { useMutation } from "react-query";
 import * as S from "./style";
 import { postWrite } from "@apis/article";
@@ -14,6 +15,7 @@ const WriteBoard = () => {
     const type = useRecoilValue(articleTypeAtom);
     const [content, setContent] = useState("");
     const[content2, ] = useState("");
+    const [isPrivate, setPrivate] = useState(false);
     const navigate = useNavigate();
 
     const { mutate: writeMutate } = useMutation(postWrite, {
@@ -38,15 +40,24 @@ const WriteBoard = () => {
         <>
             <S.Header>
                 <S.STitle>
-                    {type == "GENERAL" ? "게시판 글쓰기" : "기술 블로그 글쓰기"}
+                    {type == "GENERAL" ? "게시판 글쓰기" : type == "TECH" ? "기술 블로그 글쓰기" : "자기소개 글쓰기"}
                 </S.STitle>
-                <S.Post
-                    onClick={() => {
-                        writeMutate({ title, type, content });
-                    }}
-                >
-                    글 게시하기
-                </S.Post>
+                <S.Button>
+                    {/* <Button
+                        state="GRAY"
+                        value="임시저장"
+                        onClick={() => {
+                            setPrivate(true);
+                            writeMutate({ title, type, content, isPrivate });
+                        }}
+                    /> */}
+                    <Button
+                        value="글 게시하기"
+                        onClick={() => {
+                            writeMutate({ title, type, content, isPrivate });
+                        }}
+                    />
+                </S.Button>
             </S.Header>
             <S.TitleInput
                 placeholder="제목을 입력해주세요"

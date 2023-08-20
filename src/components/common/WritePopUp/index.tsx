@@ -51,6 +51,11 @@ const WritePopUp = ({ setShowPopUp }:PropTypes) => {
                         setArticleType("TECH");
                     }
                 }/>    
+                <Option icon={<Article/>} to='/write' optionName='자기소개 글쓰기' onClick={
+                    ()=>{
+                        setArticleType("INTRODUCE");
+                    }
+                }/>
             </S.OpitonInfo>         
         </Modal>
     );

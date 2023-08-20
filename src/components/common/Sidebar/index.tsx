@@ -118,6 +118,15 @@ export const Sidebar = () => {
                         <Computer width={24} />
                     </Option>
                     <Option
+                        to="/Introduce"
+                        pagename="자기소개"
+                        category={category}
+                        onSelect={onSelect}
+                        setIsOpen={setIsOpen}
+                    >
+                        <User width={24} />
+                    </Option>
+                    <Option
                         to="/ranking"
                         pagename="랭킹"
                         category={category}
