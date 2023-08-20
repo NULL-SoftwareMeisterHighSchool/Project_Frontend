@@ -22,8 +22,8 @@ const Board = () => {
     const getBlogData = () => {
         getBlog({
             type: "GENERAL",
-            offset: (page - 1) * (8 + 1),
-            limit: 8,
+            offset: (page - 1) * (10 + 1),
+            limit: 10,
             order:
                 filterData === "최신순"
                     ? "TIME"
@@ -99,7 +99,7 @@ const Board = () => {
                 <Pagination
                     activePage={page}
                     itemsCountPerPage={8}
-                    totalItemsCount={blogData.totalCount}
+                    totalItemsCount={blogData.totalCount-1}
                     pageRangeDisplayed={5}
                     prevPageText={
                         <S.ArrowButton>
