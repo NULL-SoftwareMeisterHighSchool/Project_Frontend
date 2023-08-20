@@ -15,6 +15,7 @@ const WriteBoard = () => {
     const type = useRecoilValue(articleTypeAtom);
     const [content, setContent] = useState("");
     const[content2, ] = useState("");
+    const [isPrivate, setPrivate] = useState(false);
     const navigate = useNavigate();
 
     const { mutate: writeMutate } = useMutation(postWrite, {
@@ -46,13 +47,14 @@ const WriteBoard = () => {
                         state="GRAY"
                         value="임시저장"
                         onClick={() => {
-                            writeMutate({ title, type, content });
+                            setPrivate(true);
+                            writeMutate({ title, type, content, isPrivate });
                         }}
                     />
                     <Button
                         value="글 게시하기"
                         onClick={() => {
-                            writeMutate({ title, type, content });
+                            writeMutate({ title, type, content, isPrivate });
                         }}
                     />
                 </S.Button>

@@ -1,7 +1,5 @@
-import { getBlogDetailProps, getBlogProps } from "./type";
+import { getBlogProps } from "./type";
 import { postCommentType, postWriteType, putWriteType, deleteCommentType } from "./type";
-import { useRecoilValue } from "recoil"; 
-import { articleIdAtom } from "@atoms/articleId";
 import { instance } from "..";
 
 const router = `/articles`;
@@ -65,11 +63,13 @@ export const postWrite = async ({
     title,
     type,
     content,
+    isPrivate
 }: postWriteType) => {
     await instance.post(`${router}/`, {
         title,
         type,
         content,
+        isPrivate
     });
 };
 

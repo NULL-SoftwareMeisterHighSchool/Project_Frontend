@@ -58,6 +58,7 @@ export type postWriteType = {
     title : string;
     type : string;
     content : string;
+    isPrivate: boolean;
 }
 
 export type putWriteType = {
