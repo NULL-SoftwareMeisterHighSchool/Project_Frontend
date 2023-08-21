@@ -13,24 +13,28 @@ interface PropTypes {
     setShowPopUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+type ArticlesTypes = {
+    id: number;
+    title: string;
+    thumbnail: string;
+    summary: string;
+    author: {
+        id: number;
+        name: string;
+    };
+    createdAt: string;
+    likes: number;
+    views: number;
+}
+
+type TempArticleTypes = {
+    articles: ArticlesTypes[]
+}
+
 const TempWrite = ({ setShowPopUp }:PropTypes) => {
     const [isHovered, setIsHovered] = useState(false);
-    const [tempArticle, setTempArticle] = useState({
-        articles:[
-            {
-                id: 0,
-                title: "",
-                thumbnail: "",
-                summary: "",
-                author: {
-                    id: 0,
-                    name: "",
-                },
-                createdAt: "",
-                likes: 0,
-                views:0
-            },
-        ]
+    const [tempArticle, setTempArticle] = useState<TempArticleTypes>({
+        articles: []
     });
     const { refetch } = useQuery("getTempWrite", ()=>getTempWrite(),{
         onSuccess: (res)=>{
@@ -68,7 +72,7 @@ const TempWrite = ({ setShowPopUp }:PropTypes) => {
                 </S.Close>
             </S.PopUpInfo>
             <S.Content>
-                {tempArticle.articles.map((post) => (
+                {tempArticle?.articles.map((post) => (
                     <Post
                         id={post.id}
                         title={post.title}
