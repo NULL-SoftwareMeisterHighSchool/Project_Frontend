@@ -27,18 +27,12 @@ type ArticlesTypes = {
     views: number;
 }
 
-type TempArticleTypes = {
-    articles: ArticlesTypes[]
-}
-
 const TempWrite = ({ setShowPopUp }:PropTypes) => {
     const [isHovered, setIsHovered] = useState(false);
-    const [tempArticle, setTempArticle] = useState<TempArticleTypes>({
-        articles: []
-    });
+    const [tempArticle, setTempArticle] = useState<ArticlesTypes[]>([]);
     const { refetch } = useQuery("getTempWrite", ()=>getTempWrite(),{
         onSuccess: (res)=>{
-            setTempArticle(res.data);
+            setTempArticle(res.data.articles);
         },
         onError: ()=>{
             alertError("임시 저장된 글을 가져올 수 없습니다.");
@@ -72,7 +66,7 @@ const TempWrite = ({ setShowPopUp }:PropTypes) => {
                 </S.Close>
             </S.PopUpInfo>
             <S.Content>
-                {tempArticle.articles.map((post) => (
+                {tempArticle.map((post) => (
                     <Post
                         id={post.id}
                         title={post.title}
