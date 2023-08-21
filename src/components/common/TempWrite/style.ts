@@ -64,5 +64,6 @@ export const Content = styled.div`
     align-items: flex-start;
     flex: 1 0 0;
     align-self: stretch;
-    min-height: 100px;
+    min-height: 400px;
+    overflow-y: scroll;
 `;
