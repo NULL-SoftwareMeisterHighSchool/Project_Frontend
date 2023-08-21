@@ -15,7 +15,7 @@ const WriteBoard = () => {
     const type = useRecoilValue(articleTypeAtom);
     const [content, setContent] = useState("");
     const[content2, ] = useState("");
-    const [isPrivate, setPrivate] = useState(false);
+    const [isPrivate, setPrivate] = useState<boolean>(false);
     const navigate = useNavigate();
 
     const { mutate: writeMutate } = useMutation(postWrite, {
@@ -43,14 +43,14 @@ const WriteBoard = () => {
                     {type == "GENERAL" ? "게시판 글쓰기" : type == "TECH" ? "기술 블로그 글쓰기" : "자기소개 글쓰기"}
                 </S.STitle>
                 <S.Button>
-                    {/* <Button
+                    <Button
                         state="GRAY"
                         value="임시저장"
                         onClick={() => {
                             setPrivate(true);
-                            writeMutate({ title, type, content, isPrivate });
+                            writeMutate({ title, type, content, isPrivate:true });
                         }}
-                    /> */}
+                    />
                     <Button
                         value="글 게시하기"
                         onClick={() => {
