@@ -1,5 +1,5 @@
 import { getBlogProps } from "./type";
-import { postCommentType, postWriteType, putWriteType, deleteCommentType } from "./type";
+import { postCommentType, postWriteType, putWriteType, deleteCommentType, putVisibilityType } from "./type";
 import { instance } from "..";
 
 const router = `/articles`;
@@ -83,3 +83,12 @@ export const putWrite = async ({
         "content" : content2,
     });
 };
+
+export const putVisibility = async ({
+    id,
+    isPrivate
+}:putVisibilityType) => {
+    await instance.put(`${router}/${id}/visibility`, {
+        isPrivate
+    });
+}
