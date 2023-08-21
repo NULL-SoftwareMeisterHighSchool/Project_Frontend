@@ -72,7 +72,7 @@ const TempWrite = ({ setShowPopUp }:PropTypes) => {
                 </S.Close>
             </S.PopUpInfo>
             <S.Content>
-                {tempArticle?.articles.map((post) => (
+                {tempArticle.articles.map((post) => (
                     <Post
                         id={post.id}
                         title={post.title}
