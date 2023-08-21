@@ -27,6 +27,11 @@ export const getUserMe = async () => {
     return res;
 };
 
+export const getTempWrite = async () => {
+    const res = await instance.get(`${router}/me/temp-articles`,);
+    return res;
+};
+
 export const getUser = async (id : string | undefined) => {
     const res = await instance.get(`${router}/${id}`,);
     return res;

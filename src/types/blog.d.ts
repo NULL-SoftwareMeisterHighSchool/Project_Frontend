@@ -25,6 +25,7 @@ export type BLOGDETAILTYPE = {
     },
     isLiked: boolean,
     isAuthor: boolean,
+    isPrivate: boolean,
     commentCount: number,
     comments: CONTENTTYPE[],
 }

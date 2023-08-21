@@ -9,7 +9,6 @@ import { useMutation } from "react-query";
 import { Body2, BodyLarge, BodyStrong, TitleLarge } from "@styles/text.style";
 import LeftArrow from "@assets/images/pages/LeftArrow.svg";
 import { useNavigate } from "react-router-dom";
-import Dropdown from "@components/common/Dropdown";
 import { postSendEmail, postSignupStudent, postVerify } from "@apis/auth";
 import {
     alertError,
@@ -18,9 +17,6 @@ import {
     alertWarning,
 } from "@utils/toastify";
 
-type DropdownType = {
-    text: string;
-};
 const emailRex = new RegExp("^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$");
 
 const EnRolledSignup = () => {
@@ -80,23 +76,10 @@ const EnRolledSignup = () => {
         code: "",
         userID: "",
         password: "",
+        passwordCheck: "",
         emailCode: true, // 수정 필요
         githubID: "",
     });
-
-    const [userSchool, setUserSchool] = useState<DropdownType | undefined>({
-        text: "대덕SW마이스터고",
-    });
-    const schoolSelect = [
-        { text: "대덕SW마이스터고" },
-        { text: "대구SW마이스터고" },
-        { text: "광주SW마이스터고" },
-        { text: "부산SW마이스터고" },
-    ];
-    useEffect(() => {
-        setUserData({ ...userData, school: userSchool!.text });
-    }, [userSchool]);
-
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setUserData({
@@ -105,9 +88,19 @@ const EnRolledSignup = () => {
         });
     };
 
+    useEffect(() => {
+        const school = userData.email.split("@")[1]?.split(".")[0]
+            ? userData.email.split("@")[1].split(".")[0]
+            : "";
+        setUserData({
+            ...userData,
+            school: school ?? "",
+        });
+    }, [userData.email]);
+
     const onClickPage = () => {
-        if (userData.admissionYear === 0) {
-            alertWarning("입학연도를 입력해주세요.");
+        if (userData.name === "") {
+            alertWarning("이름를 입력해주세요.");
         } else if (
             userData.admissionYear < 2015 ||
             userData.admissionYear > now.getFullYear()
@@ -125,12 +118,14 @@ const EnRolledSignup = () => {
     };
 
     const onClickSignUp = () => {
-        if (userData.name === "") {
+        if (userData.userID === "") {
             alertWarning("이름를 입력해주세요.");
-        } else if (userData.userID === "") {
-            alertWarning("아이디를 입력해주세요.");
         } else if (userData.password === "") {
             alertWarning("비밀번호를 입력해주세요.");
+        } else if (userData.passwordCheck === "") {
+            alertWarning("비밀번호를 확인 입력해주세요.");
+        } else if (userData.passwordCheck !== userData.password) {
+            alertWarning("비밀번호와 재입력이 다릅니다.");
         } else if (userData.githubID === "") {
             alertWarning("Github를 입력해주세요.");
         } else if (
@@ -141,11 +136,11 @@ const EnRolledSignup = () => {
         } else {
             signupStudent({
                 school:
-                    userData.school === "대덕SW마이스터고"
+                    userData.school === "dsm"
                         ? "DSM"
-                        : userData.school === "대구SW마이스터고"
+                        : userData.school === "dgsw"
                         ? "DGSM"
-                        : userData.school === "광주SW마이스터고"
+                        : userData.school === "gsm"
                         ? "GSM"
                         : "BSM",
                 email: userData.email,
@@ -175,16 +170,14 @@ const EnRolledSignup = () => {
                 </S.Title>
                 {pageNum === 1 && (
                     <S.InputContainer>
-                        <S.DropContainer>
-                            <BodyLarge>학교</BodyLarge>
-                            <Dropdown
-                                items={schoolSelect}
-                                describe="학교"
-                                val={userSchool}
-                                setVal={setUserSchool}
-                                width="100%"
-                            />
-                        </S.DropContainer>
+                        <Input
+                            type="string"
+                            title="이름"
+                            width="100%"
+                            placeholder="실명을 입력해 주세요"
+                            name="name"
+                            onChange={onChange}
+                        />
                         <Input
                             type="number"
                             title="입학연도"
@@ -225,14 +218,6 @@ const EnRolledSignup = () => {
                     <S.InputContainer>
                         <Input
                             type="string"
-                            title="이름"
-                            width="100%"
-                            placeholder="실명을 입력해 주세요"
-                            name="name"
-                            onChange={onChange}
-                        />
-                        <Input
-                            type="string"
                             title="아이디"
                             width="100%"
                             placeholder="아이디를 입력해 주세요"
@@ -245,6 +230,14 @@ const EnRolledSignup = () => {
                             width="100%"
                             placeholder="영·숫자·기호 포함 8자 이상"
                             name="password"
+                            onChange={onChange}
+                        />
+                        <Input
+                            type="password"
+                            title="비밀번호 재입력"
+                            width="100%"
+                            placeholder="비밀번호를 다시 입력해 주세요"
+                            name="passwordCheck"
                             onChange={onChange}
                         />
                         <Input
