@@ -118,6 +118,15 @@ export const Sidebar = () => {
                         <Computer width={24} />
                     </Option>
                     <Option
+                        to="/Introduce"
+                        pagename="자기소개"
+                        category={category}
+                        onSelect={onSelect}
+                        setIsOpen={setIsOpen}
+                    >
+                        <User width={24} />
+                    </Option>
+                    <Option
                         to="/ranking"
                         pagename="랭킹"
                         category={category}
@@ -139,7 +148,7 @@ export const Sidebar = () => {
                             <Alarm width={24} />
                         </Option> */}
                         <Option
-                            to={"/profile/"+userData.id}
+                            to={"/profile?id="+userData.id}
                             pagename="마이페이지"
                             category={category}
                             onSelect={onSelect}

@@ -5,7 +5,7 @@ import { CommentStateType } from "./comment.type";
 import { deleteComment } from "@apis/article";
 import { useMutation } from "react-query";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { profileIdAtom } from "@atoms/profile";
 
@@ -38,8 +38,9 @@ const Comment = ({
   to,
   state = "COMMENT",
 }: ComentType) => {
-  const { id } = useParams();
-  const navigate = useNavigate();
+  const { search } = useLocation();
+  const id = search.split(/[=,&]/)[1];
+const navigate = useNavigate();
   const myId = useRecoilValue(profileIdAtom);
   const [commentOpen, setCommentOpen] = useState<boolean>(false);
   const [modal, setModal] = useState<boolean>(false);

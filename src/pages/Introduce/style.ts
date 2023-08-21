@@ -62,7 +62,7 @@ export const BoardContainer = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  height: 530px;
+  //height: 530px;
 `;
 
 export const Pagination = styled.div`

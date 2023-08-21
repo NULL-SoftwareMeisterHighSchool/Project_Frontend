@@ -103,7 +103,7 @@ const SkillBlog = () => {
                 <S.BlogContainer>
                     {skillData.articles.map((data: BLOGTYPE) => (
                         <BlogPost
-                            to={"/blogdetail/" + data.id}
+                            to={"/blogdetail?=" + data.id}
                             key={data.id}
                             id={data.id}
                             name={data.author.name}

@@ -18,12 +18,12 @@ type blogDataProps = {
     totalCount: number;
 };
 
-const Board = () => {
+const Introduce = () => {
     const getBlogData = () => {
         getBlog({
-            type: "GENERAL",
-            offset: (page - 1) * (10 + 1),
-            limit: 10,
+            type: "INTRODUCE",
+            offset: (page - 1) * (8 + 1),
+            limit: 8,
             order:
                 filterData === "최신순"
                     ? "TIME"
@@ -64,7 +64,7 @@ const Board = () => {
 
     return (
         <>
-            <TitlePath title="게시판" path="Menu > 게시판" />
+            <TitlePath title="자기소개" path="Menu > 자기소개" />
             <S.BoardContainer>
                 <SearchFilter
                     onKeyDown={(e: React.KeyboardEvent) => {
@@ -99,7 +99,7 @@ const Board = () => {
                 <Pagination
                     activePage={page}
                     itemsCountPerPage={8}
-                    totalItemsCount={blogData.totalCount-1}
+                    totalItemsCount={blogData.totalCount}
                     pageRangeDisplayed={5}
                     prevPageText={
                         <S.ArrowButton>
@@ -118,4 +118,4 @@ const Board = () => {
     );
 };
 
-export default Board;
+export default Introduce;

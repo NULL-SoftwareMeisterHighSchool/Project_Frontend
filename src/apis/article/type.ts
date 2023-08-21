@@ -58,6 +58,7 @@ export type postWriteType = {
     title : string;
     type : string;
     content : string;
+    isPrivate: boolean | undefined;
 }
 
 export type putWriteType = {
@@ -69,4 +70,9 @@ export type putWriteType = {
 export type deleteCommentType = {
     id : string | undefined;
     commentID : number;
+}
+
+export type putVisibilityType = {
+    id : string | undefined;
+    isPrivate : boolean;
 }
