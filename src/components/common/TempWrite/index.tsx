@@ -18,17 +18,17 @@ const TempWrite = ({ setShowPopUp }:PropTypes) => {
     const [tempArticle, setTempArticle] = useState({
         articles:[
             {
-                id: 1,
-                title: "나의 멋진 React 공부 일지",
+                id: 0,
+                title: "",
                 thumbnail: "",
                 summary: "",
                 author: {
-                    id: 123,
+                    id: 0,
                     name: "",
                 },
                 createdAt: "",
-                likes: 3,
-                views:3
+                likes: 0,
+                views:0
             },
         ]
     });
