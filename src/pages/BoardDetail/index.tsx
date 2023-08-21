@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { color } from "@styles/theme.style";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Favorite } from "@assets/images/icon/Favorite";
 import { ChatBubble } from "@assets/images/icon/ChatBubble";
 import { Share } from "@assets/images/icon/Share";
@@ -26,7 +26,8 @@ const BoardDetail = () => {
     const View = React.lazy(
         () => import("../../components/pages/BoardDetail/Viewer")
     );
-    const { id } = useParams();
+    const { search } = useLocation();
+    const id = search.split(/[=,&]/)[1];
     const navigate = useNavigate();
     const setBlogId = useSetRecoilState(articleIdAtom);
     const [showPopUp, setShowPopUp] = useState<boolean>(false);
@@ -119,7 +120,7 @@ const BoardDetail = () => {
                     <S.Thumbnail>
                         <S.PostTitle>{data.title}</S.PostTitle>
                         <S.Profile onClick={()=>{
-                            navigate("/profile/"+data.author.id);
+                            navigate("/profile?id="+data.author.id);
                         }}>
                             <UserIcon backWidth="48px" iconWidth={26} />
                             <S.ProfileInfo>
@@ -170,7 +171,7 @@ const BoardDetail = () => {
                             </S.IconPointer>
                             {data.isAuthor ? (
                                 <S.MyIcon>
-                                    <S.UpdateIcon to={"/updateblog/" + id}>
+                                    <S.UpdateIcon to={"/updateblog?=" + id}>
                                         <Edit
                                             fill={color.primaryBase}
                                             width="24px"
@@ -210,7 +211,7 @@ const BoardDetail = () => {
                                 commentID={post.commentID}
                                 username={post.author.name}
                                 content={post.content}
-                                to={"/profile/" + post.author.id}
+                                to={"/profile?id=" + post.author.id}
                                 date={UseDate(post.createdAt).date}
                                 time={UseDate(post.createdAt).time}
                                 func={refetch}

@@ -21,10 +21,11 @@ import { useQuery } from "react-query";
 import { getUserMeTiny } from "@apis/users";
 import { useNavigate } from "react-router-dom";
 import { BodyStrong } from "@styles/text.style";
+import { sidebarAtom } from "@atoms/sidebar";
 
 export const Sidebar = () => {
     const [isOpen, setIsOpen] = useState (false) ;
-    const [category, setCategory] = useState("메인");
+    const [category, setCategory] = useRecoilState(sidebarAtom);
     const [showPopUp, setShowPopUp] = useState<boolean>(false);
     const outside = useRef<HTMLElement>(null);
     const onSelect = useCallback(
@@ -62,7 +63,7 @@ export const Sidebar = () => {
     useEffect(() => {
         document.addEventListener('mousedown', handlerOutsie as unknown as EventListener);
         return () => {
-          document.removeEventListener('mousedown', handlerOutsie as unknown as EventListener);
+            document.removeEventListener('mousedown', handlerOutsie as unknown as EventListener);
         };
     });
 
@@ -117,6 +118,15 @@ export const Sidebar = () => {
                         <Computer width={24} />
                     </Option>
                     <Option
+                        to="/Introduce"
+                        pagename="자기소개"
+                        category={category}
+                        onSelect={onSelect}
+                        setIsOpen={setIsOpen}
+                    >
+                        <User width={24} />
+                    </Option>
+                    <Option
                         to="/ranking"
                         pagename="랭킹"
                         category={category}
@@ -138,7 +148,7 @@ export const Sidebar = () => {
                             <Alarm width={24} />
                         </Option> */}
                         <Option
-                            to={"/profile/"+userData.id}
+                            to={"/profile?id="+userData.id}
                             pagename="마이페이지"
                             category={category}
                             onSelect={onSelect}

@@ -190,7 +190,7 @@ const Main = () => {
                                 title={post.title}
                                 name={post.author.name}
                                 date={UseDate(post.createdAt).date}
-                                to={"/blogdetail/" + post.id}
+                                to={"/blogdetail?id=" + post.id}
                             />
                         ))}
                     </S.Board>
@@ -210,7 +210,7 @@ const Main = () => {
                                 title={post.title}
                                 name={post.author.name}
                                 date={UseDate(post.createdAt).date}
-                                to={"/blogdetail/" + post.id}
+                                to={"/blogdetail?id=" + post.id}
                             />
                         ))}
                     </S.Board>

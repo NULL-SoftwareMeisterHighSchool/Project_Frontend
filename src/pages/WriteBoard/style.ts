@@ -8,19 +8,17 @@ export const Header = styled.div`
     padding: 24px 60px;
     align-items: center;
     justify-content: space-between;
+
+    @media screen and (max-width: 490px){
+        flex-direction: column;
+        gap: 12px;
+        padding: 24px 0px;
+    }
 `;
 
-export const Post = styled.button`
+export const Button = styled.div`
     display: flex;
-    padding: 14px 20px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-
-    text-decoration: none;
-    border-radius: 8px;
-    background-color: ${color.primaryBase};
-    color: ${color.white};
+    gap: 12px;
 `;
 
 export const STitle = styled(Title)``;

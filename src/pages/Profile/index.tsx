@@ -13,18 +13,19 @@ import { profileIdAtom, profileNameAtom } from "@atoms/profile";
 import { getUser } from "@apis/users";
 import UserIcon from "@components/common/UserIcon";
 import UpdateProfile from "@components/pages/Mypage/UpdateProfile";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { USERDATATYPE } from "../../types/profile";
-import { alertError, alertSuccess } from "@utils/toastify";
+import { alertError, alertInfo, alertSuccess } from "@utils/toastify";
 import UseDate from "@hooks/useDate";
 
 const Mypage = () => {
+    const { search } = useLocation();
     const navigate = useNavigate();
     const [updateProfileOpen, setUpdateProfileOpen] = useState(false);
     const [portfolio, setPortfolio] = useState(false);
     const [myId, setMyId] = useRecoilState(profileIdAtom);
+    const id = search.split(/[=,&]/)[1];
     const setMyName = useSetRecoilState(profileNameAtom);
-    const { id } = useParams();
     const [userData, setUserData] = useState<USERDATATYPE>({
         name: "",
         email: "",
@@ -65,9 +66,9 @@ const Mypage = () => {
     const { refetch } = useQuery("getUser", () => getUser(id), {
         onSuccess: (res) => {
             setUserData(res.data);
-            if(userData.portfolioURL.indexOf("http") === -1){
+            if (userData.portfolioURL.indexOf("http") === -1) {
                 setPortfolio(false);
-            }else{
+            } else {
                 setPortfolio(true);
             }
         },
@@ -81,6 +82,9 @@ const Mypage = () => {
         refetch();
     }, [refetch]);
 
+    useEffect(() => {
+        refetch();
+    }, [id]);
     return (
         <>
             <TitlePath
@@ -124,7 +128,10 @@ const Mypage = () => {
                                 <S.UserContectTitle>
                                     portfolio
                                 </S.UserContectTitle>
-                                <S.UserLink to={portfolio ? userData.portfolioURL : "https:" + userData.portfolioURL}>
+                                <S.UserLink
+                                    to={userData.portfolioURL}
+                                    target="_blank"
+                                >
                                     <S.UserContect>
                                         {userData.portfolioURL}
                                     </S.UserContect>
@@ -164,10 +171,10 @@ const Mypage = () => {
                                 titleImg={
                                     data.thumbnail === ""
                                         ? SkillBlogDefaultImg
-                                        : ""
+                                        : data.thumbnail
                                 }
                                 date={UseDate(data.createdAt).date}
-                                to={"/blogdetail/" + data.id}
+                                to={"/blogdetail?id=" + data.id}
                                 likes={data.likes}
                                 views={data.views}
                             />
@@ -183,7 +190,7 @@ const Mypage = () => {
                                 title={post.title}
                                 name={post.author.name}
                                 date={UseDate(post.createdAt).date}
-                                to={"/blogdetail/" + post.id}
+                                to={"/blogdetail?id=" + post.id}
                             />
                         ))}
                     </S.PostContainer>

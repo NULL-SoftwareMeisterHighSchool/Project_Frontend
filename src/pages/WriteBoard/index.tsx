@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Button from "@components/common/Button";
 import { useMutation } from "react-query";
 import * as S from "./style";
 import { postWrite } from "@apis/article";
@@ -6,28 +7,30 @@ import Toast from "@components/pages/WriteBoard/Toast";
 import { articleTypeAtom } from "@atoms/articleType";
 import { useRecoilValue } from "recoil";
 import { alertError, alertSuccess } from "@utils/toastify";
-import { profileIdAtom } from "@atoms/profile";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "@utils/cookies";
 
 const WriteBoard = () => {
     const [title, setTitle] = useState("");
     const type = useRecoilValue(articleTypeAtom);
     const [content, setContent] = useState("");
-    const[content2, setContent2] = useState("");
+    const[content2, ] = useState("");
+    const [isPrivate, setPrivate] = useState<boolean>(false);
+    const navigate = useNavigate();
+
     const { mutate: writeMutate } = useMutation(postWrite, {
         onSuccess: () => {
             alertSuccess("글 작성에 성공했습니다.");
-            window.location.href = "/";
+            navigate("/")
         },
         onError: () => {
             alertError("글 작성 실패했습니다.");
         },
     });
-    const myid = useRecoilValue(profileIdAtom);
-    const navigate = useNavigate();
+    const refreshCookie = getCookie("refreshToken")
 
     useEffect(() => {
-        if (!myid) {
+        if (!refreshCookie) {
             alertError("로그인 후 이용 가능합니다.");
             navigate("/login");
         }
@@ -37,15 +40,24 @@ const WriteBoard = () => {
         <>
             <S.Header>
                 <S.STitle>
-                    {type == "GENERAL" ? "게시판 글쓰기" : "기술 블로그 글쓰기"}
+                    {type == "GENERAL" ? "게시판 글쓰기" : type == "TECH" ? "기술 블로그 글쓰기" : "자기소개 글쓰기"}
                 </S.STitle>
-                <S.Post
-                    onClick={() => {
-                        writeMutate({ title, type, content });
-                    }}
-                >
-                    글 게시하기
-                </S.Post>
+                <S.Button>
+                    <Button
+                        state="GRAY"
+                        value="임시저장"
+                        onClick={() => {
+                            setPrivate(true);
+                            writeMutate({ title, type, content, isPrivate:true });
+                        }}
+                    />
+                    <Button
+                        value="글 게시하기"
+                        onClick={() => {
+                            writeMutate({ title, type, content, isPrivate });
+                        }}
+                    />
+                </S.Button>
             </S.Header>
             <S.TitleInput
                 placeholder="제목을 입력해주세요"
