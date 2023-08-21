@@ -8,8 +8,7 @@ export const Dropdown = styled.div<{ width: string }>`
     display: flex;
     flex-direction: column;
     gap: 8px;
-
-    width: ${(props) => props.width};
+    width: 100%;
 `;
 
 export const DropdownBox = styled.div`

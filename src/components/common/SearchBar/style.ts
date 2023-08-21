@@ -11,8 +11,8 @@ export const Container = styled.div<{ width: string }>`
     border-radius: 8px;
 
     height: 48px;
-    width: ${(props) => props.width};
-    min-width: max-content;
+    width: 100%;
+    min-width: ${(props) => props.width};
 `;
 
 export const InputBox = styled.input`
