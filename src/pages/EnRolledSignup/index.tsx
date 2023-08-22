@@ -119,7 +119,7 @@ const EnRolledSignup = () => {
 
     const onClickSignUp = () => {
         if (userData.userID === "") {
-            alertWarning("이름를 입력해주세요.");
+            alertWarning("아이디를 입력해주세요.");
         } else if (userData.password === "") {
             alertWarning("비밀번호를 입력해주세요.");
         } else if (userData.passwordCheck === "") {
@@ -173,6 +173,7 @@ const EnRolledSignup = () => {
                         <Input
                             type="string"
                             title="이름"
+                            max={5}
                             width="100%"
                             placeholder="실명을 입력해 주세요"
                             name="name"
