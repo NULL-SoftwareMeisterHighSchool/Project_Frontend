@@ -98,7 +98,7 @@ const Board = () => {
                 </S.Content>
                 <Pagination
                     activePage={page}
-                    itemsCountPerPage={8}
+                    itemsCountPerPage={10}
                     totalItemsCount={blogData.totalCount-1}
                     pageRangeDisplayed={5}
                     prevPageText={
