@@ -1,27 +1,27 @@
-# React + TypeScript + Vite
+# Somein
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Somein은 4개 sw마이스터고등학교 교류를 위한 커뮤니티입니다.
 
-Currently, two official plugins are available:
+### 소마고란?
+소프트웨어마이스터고의 약자로 4차 산업 혁명에 따른 SW인재를 양성하기 위해 만들어진 특목고입니다. 전국 4곳 광주, 대전, 대구, 부산에 4개교가 있으며 소프트웨어마이스터고 연합을 구성하여 매년 연합 토크콘서트와 해커톤을 진행합니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 문제 상황
+소마고끼리 매년 2번의 행사를 통해 교류를 하지만 소마고 학생들이 모여 만들어진 서비스가 사실상 없고 두 번의 행사를 빼면 교류할 기회가 없습니다.
 
-## Expanding the ESLint configuration
+### 해결 방안
+온라인 커뮤니티 장을 이용하여 소마고 학생들끼리 편하게 소통을 할 수 있는 장을 만들자!
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
+### 프로젝트 실행 방법
+**준비하기**
+아래 Shell 명령어를 순서대로 입력해 주세요.
+> yarn 
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+아래 명령어로 dev 환경을 실행해 보세요!
+> yarn dev
+---
+### 사용 skill
+* React
+* TypeScript
+* React-query
+* Styled-components
