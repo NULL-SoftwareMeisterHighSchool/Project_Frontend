@@ -52,7 +52,7 @@ const SkillBlog = () => {
                 order:
                     filterData === "최신순"
                         ? "TIME"
-                        : filterData === "최신순"
+                        : filterData === "조회수순"
                         ? "VIEWS"
                         : "LIKES",
                 setData: setSkillData,
