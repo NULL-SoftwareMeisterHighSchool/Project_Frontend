@@ -22,12 +22,12 @@ const Introduce = () => {
     const getBlogData = () => {
         getBlog({
             type: "INTRODUCE",
-            offset: (page - 1) * (8 + 1),
-            limit: 8,
+            offset: (page - 1) * 10,
+            limit: 10,
             order:
                 filterData === "최신순"
                     ? "TIME"
-                    : filterData === "최신순"
+                    : filterData === "조회수순"
                     ? "VIEWS"
                     : "LIKES",
             setData: setBlogData,
@@ -98,8 +98,8 @@ const Introduce = () => {
                 </S.Content>
                 <Pagination
                     activePage={page}
-                    itemsCountPerPage={8}
-                    totalItemsCount={blogData.totalCount-1}
+                    itemsCountPerPage={10}
+                    totalItemsCount={blogData.totalCount}
                     pageRangeDisplayed={5}
                     prevPageText={
                         <S.ArrowButton>
