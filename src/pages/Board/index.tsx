@@ -22,12 +22,12 @@ const Board = () => {
     const getBlogData = () => {
         getBlog({
             type: "GENERAL",
-            offset: (page - 1) * (10 + 1),
+            offset: (page - 1) * 10,
             limit: 10,
             order:
                 filterData === "최신순"
                     ? "TIME"
-                    : filterData === "최신순"
+                    : filterData === "조회수순"
                     ? "VIEWS"
                     : "LIKES",
             setData: setBlogData,
@@ -38,7 +38,7 @@ const Board = () => {
     /** blog 데이터 */
     const [blogData, setBlogData] = useState<blogDataProps>({
         articles: [],
-        totalCount: 80,
+        totalCount: 0,
     });
     /** 검색어 */
     const [searchInput, setSearchInput] = useState<string>("");
