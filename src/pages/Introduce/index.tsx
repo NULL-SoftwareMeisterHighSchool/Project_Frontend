@@ -38,7 +38,7 @@ const Introduce = () => {
     /** blog 데이터 */
     const [blogData, setBlogData] = useState<blogDataProps>({
         articles: [],
-        totalCount: 80,
+        totalCount: 0,
     });
     /** 검색어 */
     const [searchInput, setSearchInput] = useState<string>("");
@@ -99,7 +99,7 @@ const Introduce = () => {
                 <Pagination
                     activePage={page}
                     itemsCountPerPage={8}
-                    totalItemsCount={blogData.totalCount}
+                    totalItemsCount={blogData.totalCount-1}
                     pageRangeDisplayed={5}
                     prevPageText={
                         <S.ArrowButton>

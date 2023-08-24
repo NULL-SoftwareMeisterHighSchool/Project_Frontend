@@ -21,14 +21,6 @@ export default defineConfig({
     },
   },
   server: {
-    proxy: {
-      '^/(?!api).*$': {
-        target: 'https://null-somein.kro.kr/',
-        rewrite: (path) => {
-          return path;
-        }
-      }
-    },
     fs: {
       strict: false // Allow serving index.html for all URLs
     }
