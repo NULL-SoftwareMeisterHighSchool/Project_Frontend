@@ -100,7 +100,7 @@ const Setting = () => {
                         navigate('/개인정보처리방침')
                     }}
                 />
-                {/* <UserSetting
+                <UserSetting
                     title="회원 탈퇴"
                     icon={
                         <RemoveCircle
@@ -111,7 +111,7 @@ const Setting = () => {
                     }
                     colorType={color.critical}
                     onClick={() => setModalOpen(true)}
-                /> */}
+                />
             </S.Container>
         </>
     );
