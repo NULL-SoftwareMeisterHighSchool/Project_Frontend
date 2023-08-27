@@ -14,12 +14,13 @@ export const User = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px 0; 
     >div{
         display: flex;
         align-items: center;
         gap: 20px;
     }
-    @media (max-width:1200px) {
+    @media (max-width:1500px) {
         align-items: start;
         flex-direction: column;
     }
@@ -55,9 +56,6 @@ export const Btn = styled.div`
     cursor: pointer;
     >p{
         color: ${color.grayDark2};
-    }
-    @media (max-width:1200px) {
-        margin: 40px 0 0 10px;
     }
 `;
 
