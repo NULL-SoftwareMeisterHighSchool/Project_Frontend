@@ -23,7 +23,7 @@ const Mypage = () => {
     const { search } = useLocation();
     const navigate = useNavigate();
     const [updateProfileOpen, setUpdateProfileOpen] = useState(false);
-    const [portfolio, setPortfolio] = useState(false);
+    const [, setPortfolio] = useState(false);
     const [temp, setTemp] = useState(false);
     const [myId, setMyId] = useRecoilState(profileIdAtom);
     const id = search.split(/[=,&]/)[1];
@@ -168,7 +168,7 @@ const Mypage = () => {
                     ))}
                 </S.Stack>
                 <S.Blog>
-                    <S.SubTitle>내가 작성한 블로그</S.SubTitle>
+                    <S.SubTitle>{String(myId) === id ? "내가 작성한 블로그" : "작성한 블로그"}</S.SubTitle>
                     <S.BlogContainer>
                         {userData.articles.tech.map((data) => (
                             <BlogPost
@@ -190,7 +190,7 @@ const Mypage = () => {
                     </S.BlogContainer>
                 </S.Blog>
                 <S.Post>
-                    <S.SubTitle>내가 작성한 게시물</S.SubTitle>
+                    <S.SubTitle>{String(myId) === id ? "내가 작성한 게시물" : "작성한 게시물"}</S.SubTitle>
                     <S.PostContainer>
                         {userData.articles.general.map((post) => (
                             <Post
