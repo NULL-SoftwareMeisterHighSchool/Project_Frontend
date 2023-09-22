@@ -25,3 +25,6 @@
 * TypeScript
 * React-query
 * Styled-components
+
+### 동영상
+https://www.youtube.com/watch?v=KxHroBspLZ4
